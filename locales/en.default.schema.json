@@ -436,7 +436,9 @@
     "pills": "Pills",
     "comparison_slider": "Comparison slider",
     "video_reviews": "Video reviews",
-    "review": "Review"
+    "review": "Review",
+    "product_carousel_tabs": "Product carousel",
+    "collection_tab": "Collection tab"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -1179,7 +1181,14 @@
     "y_position": "Vertical position",
     "quote": "Quote",
     "reviewer_name": "Reviewer",
-    "show_play_button": "Show play button"
+    "show_play_button": "Show play button",
+    "subheading_text": "Subheading text",
+    "tab_label": "Tab label",
+    "category_image": "Category image",
+    "category_description": "Category description",
+    "category_cta_text": "CTA text",
+    "category_link": "Category link",
+    "max_products": "Max products"
   },
   "text_defaults": {
     "accordion_heading": "Accordion heading",

@@ -1,13 +1,4 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
- {
+{
   "sections": {
     "hero": {
       "type": "hero",
@@ -56,7 +47,189 @@
         }
       },
       "block_order": ["heading", "description", "button"]
+    },
+    "product-carousel-tabs": {
+      "type": "product-carousel-tabs",
+      "settings": {
+        "heading": "Built From Food, Designed for Results",
+        "subheading_text": "brought to you by",
+        "color_scheme": "scheme-2",
+        "max_products": 5,
+        "section_width": "page-width",
+        "padding-block-start": 64,
+        "padding-block-end": 48
+      },
+      "blocks": {
+        "tab_gut_health": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_label": "Gut Health",
+            "category_description": "Superfoods and nutrients for daily digestive support",
+            "category_cta_text": "VIEW ALL GUT HEALTH",
+            "category_image": "shopify://shop_images/agile-support-1-mobile-112593770.jpg"
+          }
+        },
+        "tab_recovery": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_label": "Recovery",
+            "category_cta_text": "VIEW ALL RECOVERY"
+          }
+        },
+        "tab_immunity": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_label": "Immunity",
+            "category_cta_text": "VIEW ALL IMMUNITY"
+          }
+        },
+        "tab_energy": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_label": "Energy & Focus",
+            "category_cta_text": "VIEW ALL ENERGY & FOCUS"
+          }
+        }
+      },
+      "block_order": ["tab_gut_health", "tab_recovery", "tab_immunity", "tab_energy"]
+    },
+    "marquee-ticker": {
+      "type": "marquee",
+      "settings": {
+        "color_scheme": "scheme-7",
+        "padding-block-start": 16,
+        "padding-block-end": 48,
+        "gap_between_elements": 32,
+        "movement_direction": "normal"
+      },
+      "blocks": {
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Grounded in Food Science</p>",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.125rem",
+            "line_height": "tight",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "width": "fit-content"
+          }
+        },
+        "divider_1": {
+          "type": "_divider",
+          "settings": {
+            "thickness": 3,
+            "width_percent": 5,
+            "corner_radius": "rounded"
+          }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>High Quality Ingredients</p>",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.125rem",
+            "line_height": "tight",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "width": "fit-content"
+          }
+        },
+        "divider_2": {
+          "type": "_divider",
+          "settings": {
+            "thickness": 3,
+            "width_percent": 5,
+            "corner_radius": "rounded"
+          }
+        },
+        "text_3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Flavorful Nutrition</p>",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.125rem",
+            "line_height": "tight",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "width": "fit-content"
+          }
+        },
+        "divider_3": {
+          "type": "_divider",
+          "settings": {
+            "thickness": 3,
+            "width_percent": 5,
+            "corner_radius": "rounded"
+          }
+        },
+        "text_4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Dietitian Approved</p>",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.125rem",
+            "line_height": "tight",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "width": "fit-content"
+          }
+        },
+        "divider_4": {
+          "type": "_divider",
+          "settings": {
+            "thickness": 3,
+            "width_percent": 5,
+            "corner_radius": "rounded"
+          }
+        },
+        "text_5": {
+          "type": "text",
+          "settings": {
+            "text": "<p>No Added Sugar</p>",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.125rem",
+            "line_height": "tight",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "width": "fit-content"
+          }
+        },
+        "divider_5": {
+          "type": "_divider",
+          "settings": {
+            "thickness": 3,
+            "width_percent": 5,
+            "corner_radius": "rounded"
+          }
+        },
+        "text_6": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Keto Friendly</p>",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.125rem",
+            "line_height": "tight",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "width": "fit-content"
+          }
+        }
+      },
+      "block_order": ["text_1", "divider_1", "text_2", "divider_2", "text_3", "divider_3", "text_4", "divider_4", "text_5", "divider_5", "text_6"]
     }
   },
-  "order": ["hero"]
+  "order": ["hero", "product-carousel-tabs", "marquee-ticker"]
 }
