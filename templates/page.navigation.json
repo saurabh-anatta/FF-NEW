@@ -32,10 +32,25 @@
         "padding-block-start": 48,
         "padding-block-end": 24
       }
+    },
+    "recovery": {
+      "type": "plp-collection",
+      "settings": {
+        "heading": "Recovery",
+        "description": "Restore, rebuild, and recharge after every workout",
+        "layout": "grid",
+        "max_products": 8,
+        "show_feature_card": false,
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 48,
+        "padding-block-end": 24
+      }
     }
   },
   "order": [
     "all-products",
-    "gut-health"
+    "gut-health",
+    "recovery"
   ]
 }
