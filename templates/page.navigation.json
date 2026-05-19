@@ -60,12 +60,27 @@
         "padding-block-start": 48,
         "padding-block-end": 24
       }
+    },
+    "energy-focus": {
+      "type": "plp-collection",
+      "settings": {
+        "heading": "Energy & Focus",
+        "description": "Formulated with prebiotics and probiotics to support smooth digestion, reduce bloating and nurture your gut microbiome",
+        "layout": "grid",
+        "max_products": 8,
+        "show_feature_card": false,
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 48,
+        "padding-block-end": 24
+      }
     }
   },
   "order": [
     "all-products",
     "gut-health",
     "recovery",
-    "immunity"
+    "immunity",
+    "energy-focus"
   ]
 }
