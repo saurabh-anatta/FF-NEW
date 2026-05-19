@@ -28,6 +28,7 @@
     "products": "Products",
     "product_list": "Featured collection",
     "other_sections": "Other",
+    "promotional": "Promotional",
     "storytelling": "Storytelling",
     "text": "Text"
   },
@@ -441,7 +442,9 @@
     "collection_tab": "Collection tab",
     "benefits": "Benefits",
     "dietitians": "Dietitians",
-    "testimonial": "Testimonial"
+    "testimonial": "Testimonial",
+    "feature_section": "Feature section",
+    "benefit_item": "Benefit item"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -778,6 +781,7 @@
     "background_color": "Background color",
     "background_overlay": "Background overlay",
     "badge_corner_radius": "Corner radius",
+    "badge_text": "Badge text",
     "background_media": "Background media",
     "badge_position": "Position on cards",
     // Color scheme setting for sale badges on product cards
@@ -884,6 +888,7 @@
     // Checkbox to show country flag icon in localization selector
     "flag": "Flag",
     "font": "Font",
+    "free_label": "Free label",
     "font_family": "Font family",
     "font_price": "Price font",
     "font_weight": "Font weight",
@@ -983,6 +988,7 @@
     "opacity": "Opacity",
     "open_new_tab": "Open link in new tab",
     "open_row_by_default": "Open row by default",
+    "original_price": "Original price",
     "overlay": "Overlay",
     "overlay_color": "Overlay color",
     "overlay_opacity": "Overlay opacity",
