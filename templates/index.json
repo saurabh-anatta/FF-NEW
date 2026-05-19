@@ -8,6 +8,55 @@
  * ------------------------------------------------------------
  */
  {
-  "sections": {},
-  "order": []
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "media_type_1": "image",
+        "media_type_2": "image",
+        "image_2": "shopify://shop_images/main-hero-img-3-1-desktop-110524489.png",
+        "section_height": "medium",
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 8,
+        "section_width": "page-width",
+        "color_scheme": "scheme-5",
+        "toggle_overlay": true,
+        "overlay_style": "gradient",
+        "gradient_direction": "to right",
+        "overlay_color": "#00000066",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      },
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "Your Daily Greens, Reinvented",
+            "type_preset": "h1",
+            "max_width": "narrow"
+          }
+        },
+        "description": {
+          "type": "text",
+          "settings": {
+            "text": "Better taste. Better routine. Better you.",
+            "type_preset": "paragraph",
+            "max_width": "narrow",
+            "padding-block-end": 24
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Shop Now",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": ["heading", "description", "button"]
+    }
+  },
+  "order": ["hero"]
 }
