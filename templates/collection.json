@@ -8,9 +8,14 @@
  * ------------------------------------------------------------
  */
  {
-  "sections": {},
+  "sections": {
+    "main": {
+      "type": "main-collection"
+    }
+  },
   "order": [
     "header-group",
+    "main",
     "footer-group"
   ]
 }
