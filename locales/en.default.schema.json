@@ -434,7 +434,9 @@
     "video_section": "Video",
     "view_all_button": "View all",
     "pills": "Pills",
-    "comparison_slider": "Comparison slider"
+    "comparison_slider": "Comparison slider",
+    "video_reviews": "Video reviews",
+    "review": "Review"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -1174,7 +1176,10 @@
     "cs_slider_inner_color": "Slider inner color",
     "text_on_images": "Text on images",
     "x_position": "Horizontal position",
-    "y_position": "Vertical position"
+    "y_position": "Vertical position",
+    "quote": "Quote",
+    "reviewer_name": "Reviewer",
+    "show_play_button": "Show play button"
   },
   "text_defaults": {
     "accordion_heading": "Accordion heading",
