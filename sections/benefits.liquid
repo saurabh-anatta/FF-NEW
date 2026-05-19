@@ -19,10 +19,10 @@
                 {% if block.settings.icon_image != blank %}
                   {{
                     block.settings.icon_image
-                    | image_url: width: 128
+                    | image_url: width: 296
                     | image_tag:
-                      widths: '48,64,96,128',
-                      sizes: '(max-width: 749px) 48px, 64px',
+                      widths: '148, 296',
+                      sizes: '(max-width: 749px) 100px, 148px',
                       loading: 'lazy',
                       alt: block.settings.heading
                   }}
@@ -82,7 +82,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 24px;
     flex: 1;
   }
 
@@ -92,20 +92,20 @@
 
   .benefits__icon img {
     display: block;
-    width: 64px;
-    height: 64px;
+    width: 148px;
+    height: 74px;
   }
 
   .benefits__content {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 12px;
   }
 
   .benefits__item-heading {
     font-family: var(--font-body--family);
     font-weight: 600;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 28px;
     letter-spacing: 0;
     text-align: center;
@@ -116,8 +116,8 @@
   .benefits__description {
     font-family: var(--font-body--family);
     font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 28px;
     letter-spacing: 0;
     text-align: center;
     color: var(--color-foreground);
@@ -148,8 +148,8 @@
     }
 
     .benefits__icon img {
-      width: 48px;
-      height: 48px;
+      width: 100px;
+      height: 50px;
     }
 
     .benefits__item-heading {
