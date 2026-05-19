@@ -1,55 +1,170 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
-      "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "image_2": "shopify://shop_images/main-hero-img-3-1-desktop-110524489.png",
-        "section_height": "medium",
-        "content_direction": "column",
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 8,
-        "section_width": "page-width",
-        "color_scheme": "scheme-5",
-        "toggle_overlay": true,
-        "overlay_style": "gradient",
-        "gradient_direction": "to right",
-        "overlay_color": "#00000066",
-        "padding-block-start": 40,
-        "padding-block-end": 40
-      },
       "blocks": {
         "heading": {
           "type": "text",
           "settings": {
             "text": "<h1>Your Daily Greens, Reinvented</h1>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
             "type_preset": "h1",
-            "max_width": "narrow"
-          }
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "description": {
           "type": "text",
           "settings": {
             "text": "<p>Better taste. Better routine. Better you.</p>",
-            "type_preset": "paragraph",
+            "width": "fit-content",
             "max_width": "narrow",
-            "padding-block-end": 24
-          }
+            "alignment": "left",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "button": {
           "type": "button",
           "settings": {
             "label": "Shop Now",
-            "link": "shopify://collections/all"
-          }
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
         }
       },
-      "block_order": ["heading", "description", "button"]
+      "block_order": [
+        "heading",
+        "description",
+        "button"
+      ],
+      "settings": {
+        "media_type_1": "image",
+        "media_type_2": "image",
+        "image_2": "shopify://shop_images/main-hero-img-3-1-desktop-110524489.png",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 8,
+        "section_width": "page-width",
+        "section_height": "medium",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5",
+        "toggle_overlay": true,
+        "overlay_color": "#00000066",
+        "overlay_style": "gradient",
+        "gradient_direction": "to right",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
     },
     "product-carousel-tabs": {
       "type": "product-carousel-tabs",
+      "blocks": {
+        "tab_gut_health": {
+          "type": "collection_tab",
+          "settings": {
+            "collection": "",
+            "tab_label": "Gut Health",
+            "category_image": "shopify://shop_images/agile-support-1-mobile-112593770.jpg",
+            "category_description": "Superfoods and nutrients for daily digestive support",
+            "category_cta_text": "VIEW ALL GUT HEALTH",
+            "category_link": ""
+          }
+        },
+        "tab_recovery": {
+          "type": "collection_tab",
+          "settings": {
+            "collection": "",
+            "tab_label": "Recovery",
+            "category_description": "",
+            "category_cta_text": "VIEW ALL RECOVERY",
+            "category_link": ""
+          }
+        },
+        "tab_immunity": {
+          "type": "collection_tab",
+          "settings": {
+            "collection": "",
+            "tab_label": "Immunity",
+            "category_description": "",
+            "category_cta_text": "VIEW ALL IMMUNITY",
+            "category_link": ""
+          }
+        },
+        "tab_energy": {
+          "type": "collection_tab",
+          "settings": {
+            "collection": "",
+            "tab_label": "Energy & Focus",
+            "category_description": "",
+            "category_cta_text": "VIEW ALL ENERGY & FOCUS",
+            "category_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_gut_health",
+        "tab_recovery",
+        "tab_immunity",
+        "tab_energy"
+      ],
       "settings": {
         "heading": "Built From Food, Designed for Results",
         "subheading_text": "brought to you by",
@@ -58,55 +173,18 @@
         "section_width": "page-width",
         "padding-block-start": 64,
         "padding-block-end": 48
-      },
-      "blocks": {
-        "tab_gut_health": {
-          "type": "collection_tab",
-          "settings": {
-            "tab_label": "Gut Health",
-            "category_description": "Superfoods and nutrients for daily digestive support",
-            "category_cta_text": "VIEW ALL GUT HEALTH",
-            "category_image": "shopify://shop_images/agile-support-1-mobile-112593770.jpg"
-          }
-        },
-        "tab_recovery": {
-          "type": "collection_tab",
-          "settings": {
-            "tab_label": "Recovery",
-            "category_cta_text": "VIEW ALL RECOVERY"
-          }
-        },
-        "tab_immunity": {
-          "type": "collection_tab",
-          "settings": {
-            "tab_label": "Immunity",
-            "category_cta_text": "VIEW ALL IMMUNITY"
-          }
-        },
-        "tab_energy": {
-          "type": "collection_tab",
-          "settings": {
-            "tab_label": "Energy & Focus",
-            "category_cta_text": "VIEW ALL ENERGY & FOCUS"
-          }
-        }
-      },
-      "block_order": ["tab_gut_health", "tab_recovery", "tab_immunity", "tab_energy"]
+      }
     },
     "marquee-ticker": {
       "type": "marquee",
-      "settings": {
-        "color_scheme": "scheme-7",
-        "padding-block-start": 16,
-        "padding-block-end": 48,
-        "gap_between_elements": 32,
-        "movement_direction": "normal"
-      },
       "blocks": {
         "text_1": {
           "type": "text",
           "settings": {
             "text": "<p>Grounded in Food Science</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
             "font_size": "1.125rem",
@@ -114,21 +192,35 @@
             "letter_spacing": "loose",
             "case": "uppercase",
             "wrap": "nowrap",
-            "width": "fit-content"
-          }
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "divider_1": {
           "type": "_divider",
           "settings": {
             "thickness": 3,
+            "corner_radius": "rounded",
             "width_percent": 5,
-            "corner_radius": "rounded"
-          }
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
         },
         "text_2": {
           "type": "text",
           "settings": {
             "text": "<p>High Quality Ingredients</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
             "font_size": "1.125rem",
@@ -136,21 +228,35 @@
             "letter_spacing": "loose",
             "case": "uppercase",
             "wrap": "nowrap",
-            "width": "fit-content"
-          }
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "divider_2": {
           "type": "_divider",
           "settings": {
             "thickness": 3,
+            "corner_radius": "rounded",
             "width_percent": 5,
-            "corner_radius": "rounded"
-          }
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
         },
         "text_3": {
           "type": "text",
           "settings": {
             "text": "<p>Flavorful Nutrition</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
             "font_size": "1.125rem",
@@ -158,21 +264,35 @@
             "letter_spacing": "loose",
             "case": "uppercase",
             "wrap": "nowrap",
-            "width": "fit-content"
-          }
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "divider_3": {
           "type": "_divider",
           "settings": {
             "thickness": 3,
+            "corner_radius": "rounded",
             "width_percent": 5,
-            "corner_radius": "rounded"
-          }
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
         },
         "text_4": {
           "type": "text",
           "settings": {
             "text": "<p>Dietitian Approved</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
             "font_size": "1.125rem",
@@ -180,21 +300,35 @@
             "letter_spacing": "loose",
             "case": "uppercase",
             "wrap": "nowrap",
-            "width": "fit-content"
-          }
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "divider_4": {
           "type": "_divider",
           "settings": {
             "thickness": 3,
+            "corner_radius": "rounded",
             "width_percent": 5,
-            "corner_radius": "rounded"
-          }
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
         },
         "text_5": {
           "type": "text",
           "settings": {
             "text": "<p>No Added Sugar</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
             "font_size": "1.125rem",
@@ -202,21 +336,35 @@
             "letter_spacing": "loose",
             "case": "uppercase",
             "wrap": "nowrap",
-            "width": "fit-content"
-          }
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "divider_5": {
           "type": "_divider",
           "settings": {
             "thickness": 3,
+            "corner_radius": "rounded",
             "width_percent": 5,
-            "corner_radius": "rounded"
-          }
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
         },
         "text_6": {
           "type": "text",
           "settings": {
             "text": "<p>Keto Friendly</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
             "font_size": "1.125rem",
@@ -224,21 +372,41 @@
             "letter_spacing": "loose",
             "case": "uppercase",
             "wrap": "nowrap",
-            "width": "fit-content"
-          }
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
-      "block_order": ["text_1", "divider_1", "text_2", "divider_2", "text_3", "divider_3", "text_4", "divider_4", "text_5", "divider_5", "text_6"]
+      "block_order": [
+        "text_1",
+        "divider_1",
+        "text_2",
+        "divider_2",
+        "text_3",
+        "divider_3",
+        "text_4",
+        "divider_4",
+        "text_5",
+        "divider_5",
+        "text_6"
+      ],
+      "settings": {
+        "movement_direction": "normal",
+        "color_scheme": "scheme-7",
+        "padding-block-start": 16,
+        "padding-block-end": 48,
+        "gap_between_elements": 32
+      }
     },
     "benefits": {
       "type": "benefits",
-      "settings": {
-        "heading": "Why Factor Form",
-        "color_scheme": "scheme-3",
-        "section_width": "page-width",
-        "padding-block-start": 80,
-        "padding-block-end": 80
-      },
       "blocks": {
         "benefit_1": {
           "type": "benefit",
@@ -273,24 +441,69 @@
           }
         }
       },
-      "block_order": ["benefit_1", "benefit_2", "benefit_3", "benefit_4"]
-    },
-    "dietitians": {
-      "type": "dietitians",
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ],
       "settings": {
-        "heading": "Backed By Factor Dietitians",
-        "subtitle": "Formulated with guidance from Factor\u2019s in-house dietitians to help you meet your wellness goals with confidence",
-        "color_scheme": "scheme-2",
+        "heading": "Why Factor Form",
+        "color_scheme": "scheme-3",
         "section_width": "page-width",
         "padding-block-start": 80,
         "padding-block-end": 80
+      }
+    },
+    "xl-certified": {
+      "type": "xl-certified",
+      "blocks": {
+        "cert_1": {
+          "type": "certification",
+          "settings": {
+            "image": "shopify://shop_images/image-60-mobile-110864911.png",
+            "heading": "Pure Ingredients",
+            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit."
+          }
+        },
+        "cert_2": {
+          "type": "certification",
+          "settings": {
+            "image": "shopify://shop_images/image-60-mobile-110864911.png",
+            "heading": "Expert-Crafted Blends",
+            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit."
+          }
+        },
+        "cert_3": {
+          "type": "certification",
+          "settings": {
+            "image": "shopify://shop_images/image-60-mobile-110864911.png",
+            "heading": "Transparent and Clean Labels",
+            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit."
+          }
+        }
       },
+      "block_order": [
+        "cert_1",
+        "cert_2",
+        "cert_3"
+      ],
+      "settings": {
+        "heading": "The Factor Standard",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "dietitians": {
+      "type": "dietitians",
       "blocks": {
         "testimonial_1": {
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/image-61-mobile-110865479.png",
-            "quote": "\u201CA rigorous \u2018no list\u2019 of over 100 banned ingredients\u201D",
+            "quote": "“A rigorous ‘no list’ of over 100 banned ingredients”",
             "description": "Factor Form upholds strong nutrition and ingredient standards across all products. We ensure only high quality ingredients make it into our products",
             "author_name": "Kara Kash",
             "author_role": "Research & Development"
@@ -300,8 +513,8 @@
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/image-62-mobile-110865490.png",
-            "quote": "\u201COne serving equals a whole serving of green leafy veggies\u201D",
-            "description": "I love that the vitamin and mineral content is balanced; the daily value percentages aren\u2019t excessive",
+            "quote": "“One serving equals a whole serving of green leafy veggies”",
+            "description": "I love that the vitamin and mineral content is balanced; the daily value percentages aren’t excessive",
             "author_name": "Carlie Williams",
             "author_role": "Dietitian + Personal Trainer"
           }
@@ -310,29 +523,29 @@
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/image-63-mobile-110865501.png",
-            "quote": "\u201CA good mix of B vitamins along with typical electrolytes\u201D",
-            "description": "B Vitamins act as coenzymes when your body is metabolizing energy, so it\u2019s nice to have that in an electrolyte mix",
+            "quote": "“A good mix of B vitamins along with typical electrolytes”",
+            "description": "B Vitamins act as coenzymes when your body is metabolizing energy, so it’s nice to have that in an electrolyte mix",
             "author_name": "Olivia Hamilton",
             "author_role": "Dietitian"
           }
         }
       },
-      "block_order": ["testimonial_1", "testimonial_2", "testimonial_3"]
+      "block_order": [
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3"
+      ],
+      "settings": {
+        "heading": "Backed By Factor Dietitians",
+        "subtitle": "Formulated with guidance from Factor’s in-house dietitians to help you meet your wellness goals with confidence",
+        "color_scheme": "scheme-2",
+        "section_width": "page-width",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
     },
     "feature-section": {
       "type": "feature-section",
-      "settings": {
-        "image": "shopify://shop_images/daily-nouri-d37stewmyqy-unsplash-3-mobile-110526574.png",
-        "badge_text": "FREE WELCOME KIT",
-        "heading": "FREE Daily Greens Welcome Kit worth $36",
-        "description": "Turn your daily habit into a delicious ritual with a kit full of greens essentials. Free welcome kit with first time purchase of Daily Greens.",
-        "button_label": "SHOP DAILY GREENS",
-        "button_link": "shopify://collections/all",
-        "color_scheme": "scheme-3",
-        "section_width": "full-width",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      },
       "blocks": {
         "benefit_1": {
           "type": "benefit_item",
@@ -362,82 +575,51 @@
           }
         }
       },
-      "block_order": ["benefit_1", "benefit_2", "benefit_3"]
-    },
-    "xl-certified": {
-      "type": "xl-certified",
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3"
+      ],
       "settings": {
-        "heading": "The Factor Standard",
-        "color_scheme": "scheme-1",
-        "section_width": "page-width",
-        "padding-block-start": 80,
-        "padding-block-end": 80
-      },
-      "blocks": {
-        "cert_1": {
-          "type": "certification",
-          "settings": {
-            "image": "shopify://shop_images/image-60-mobile-110864911.png",
-            "heading": "Pure Ingredients",
-            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit."
-          }
-        },
-        "cert_2": {
-          "type": "certification",
-          "settings": {
-            "image": "shopify://shop_images/image-60-mobile-110864911.png",
-            "heading": "Expert-Crafted Blends",
-            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit."
-          }
-        },
-        "cert_3": {
-          "type": "certification",
-          "settings": {
-            "image": "shopify://shop_images/image-60-mobile-110864911.png",
-            "heading": "Transparent and Clean Labels",
-            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit."
-          }
-        }
-      },
-      "block_order": ["cert_1", "cert_2", "cert_3"]
+        "image": "shopify://shop_images/daily-nouri-d37stewmyqy-unsplash-3-mobile-110526574.png",
+        "badge_text": "FREE WELCOME KIT",
+        "heading": "FREE Daily Greens Welcome Kit worth $36",
+        "description": "Turn your daily habit into a delicious ritual with a kit full of greens essentials. Free welcome kit with first time purchase of Daily Greens.",
+        "button_label": "SHOP DAILY GREENS",
+        "button_link": "shopify://collections/all",
+        "color_scheme": "scheme-3",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     },
     "faq": {
       "type": "section",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 64,
-        "section_width": "page-width",
-        "section_height": "",
-        "color_scheme": "scheme-1",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "padding-block-start": 80,
-        "padding-block-end": 80
-      },
       "blocks": {
         "heading": {
           "type": "text",
           "settings": {
             "text": "<h2>Frequently Asked Questions</h2>",
-            "type_preset": "h2",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
-          }
+          },
+          "blocks": {}
         },
         "accordion": {
           "type": "accordion",
@@ -461,129 +643,248 @@
               "type": "_accordion-row",
               "settings": {
                 "heading": "What makes Factor Form products different?",
-                "open_by_default": true
+                "open_by_default": true,
+                "icon": "none",
+                "width": 20
               },
               "blocks": {
                 "text": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Factor Form products are built with clean, science-backed ingredients chosen for real, functional benefits; not trends or fillers. Each formula is optimised for daily performance, energy, and recovery.</p>",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
-                  }
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["text"]
+              "block_order": [
+                "text"
+              ]
             },
             "accordion_row_2": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "Are Factor Form products third-party tested?"
+                "heading": "Are Factor Form products third-party tested?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
               },
               "blocks": {
                 "text": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Yes, all Factor Form products undergo rigorous third-party testing to ensure purity, potency, and safety before reaching our customers.</p>",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
-                  }
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["text"]
+              "block_order": [
+                "text"
+              ]
             },
             "accordion_row_3": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "Are Factor Form products safe to use together?"
+                "heading": "Are Factor Form products safe to use together?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
               },
               "blocks": {
                 "text": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Absolutely. Our products are designed to complement each other and can be safely combined as part of your daily wellness routine.</p>",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
-                  }
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["text"]
+              "block_order": [
+                "text"
+              ]
             },
             "accordion_row_4": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "Do you ship internationally?"
+                "heading": "Do you ship internationally?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
               },
               "blocks": {
                 "text": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Currently, we ship within the United States. We are working on expanding our shipping options to serve international customers in the near future.</p>",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
-                  }
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["text"]
+              "block_order": [
+                "text"
+              ]
             },
             "accordion_row_5": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "What is your return policy?"
+                "heading": "What is your return policy?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
               },
               "blocks": {
                 "text": {
                   "type": "text",
                   "settings": {
                     "text": "<p>We offer a satisfaction guarantee on all our products. If you are not completely satisfied, please contact our support team for assistance with returns or exchanges.</p>",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
-                  }
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["text"]
+              "block_order": [
+                "text"
+              ]
             }
           },
-          "block_order": ["accordion_row_1", "accordion_row_2", "accordion_row_3", "accordion_row_4", "accordion_row_5"]
+          "block_order": [
+            "accordion_row_1",
+            "accordion_row_2",
+            "accordion_row_3",
+            "accordion_row_4",
+            "accordion_row_5"
+          ]
         }
       },
-      "block_order": ["heading", "accordion"]
+      "block_order": [
+        "heading",
+        "accordion"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 64,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
     }
   },
-  "order": ["hero", "product-carousel-tabs", "marquee-ticker", "benefits", "dietitians", "feature-section", "xl-certified", "faq"]
+  "order": [
+    "hero",
+    "product-carousel-tabs",
+    "marquee-ticker",
+    "benefits",
+    "xl-certified",
+    "dietitians",
+    "feature-section",
+    "faq"
+  ]
 }
