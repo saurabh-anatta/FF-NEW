@@ -444,7 +444,9 @@
     "dietitians": "Dietitians",
     "testimonial": "Testimonial",
     "feature_section": "Feature section",
-    "benefit_item": "Benefit item"
+    "benefit_item": "Benefit item",
+    "xl_certified": "The Factor Standard",
+    "certification": "Certification"
   },
   "options": {
     "above_carousel": "Above carousel",

@@ -364,6 +364,43 @@
       },
       "block_order": ["benefit_1", "benefit_2", "benefit_3"]
     },
+    "xl-certified": {
+      "type": "xl-certified",
+      "settings": {
+        "heading": "The Factor Standard",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      },
+      "blocks": {
+        "cert_1": {
+          "type": "certification",
+          "settings": {
+            "image": "shopify://shop_images/image-60-mobile-110864911.png",
+            "heading": "Pure Ingredients",
+            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit."
+          }
+        },
+        "cert_2": {
+          "type": "certification",
+          "settings": {
+            "image": "shopify://shop_images/image-60-mobile-110864911.png",
+            "heading": "Expert-Crafted Blends",
+            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit."
+          }
+        },
+        "cert_3": {
+          "type": "certification",
+          "settings": {
+            "image": "shopify://shop_images/image-60-mobile-110864911.png",
+            "heading": "Transparent and Clean Labels",
+            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit."
+          }
+        }
+      },
+      "block_order": ["cert_1", "cert_2", "cert_3"]
+    },
     "faq": {
       "type": "section",
       "settings": {
@@ -548,5 +585,5 @@
       "block_order": ["heading", "accordion"]
     }
   },
-  "order": ["hero", "product-carousel-tabs", "marquee-ticker", "benefits", "dietitians", "feature-section", "faq"]
+  "order": ["hero", "product-carousel-tabs", "marquee-ticker", "benefits", "dietitians", "feature-section", "xl-certified", "faq"]
 }
