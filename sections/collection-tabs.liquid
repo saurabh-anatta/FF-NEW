@@ -1,0 +1,148 @@
+{%- liquid
+  assign collection_list = section.settings.collection_list
+-%}
+
+<div class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}">
+  <div
+    class="spacing-style"
+    style="{% render 'spacing-style', settings: section.settings %}"
+  >
+    {% if collection_list.count > 0 %}
+      <nav class="collection-tabs" aria-label="{{ 'names.collection_tabs' | t }}">
+        <ul class="collection-tabs__list" role="list">
+          {% for coll in collection_list %}
+            <li class="collection-tabs__item">
+              <a
+                href="{{ coll.url }}"
+                class="collection-tabs__tab{% if collection.id == coll.id %} collection-tabs__tab--active{% endif %}"
+                {% if collection.id == coll.id %}aria-current="page"{% endif %}
+              >
+                {{- coll.title | escape -}}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .collection-tabs__list {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    padding-inline: 64px;
+    list-style: none;
+    margin: 0;
+    padding-block: 0;
+  }
+
+  .collection-tabs__item {
+    flex-shrink: 0;
+  }
+
+  .collection-tabs__tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    border: 1px solid var(--color-foreground);
+    padding: 2px 24px 4px;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: var(--font-body--family);
+    color: var(--color-foreground);
+    background: transparent;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .collection-tabs__tab:hover {
+    background: var(--color-foreground);
+    color: var(--color-background);
+  }
+
+  .collection-tabs__tab--active {
+    background: var(--color-foreground);
+    color: var(--color-background);
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-tabs__list {
+      padding-inline: 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .collection-tabs__list::-webkit-scrollbar {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.collection_tabs",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "collection_list",
+      "id": "collection_list",
+      "label": "t:settings.collection_list"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-8"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.section_width",
+      "options": [
+        { "value": "page-width", "label": "t:options.page_width" },
+        { "value": "full-width", "label": "t:options.full_width" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 24,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.collection_tabs"
+    }
+  ]
+}
+{% endschema %}

@@ -58,6 +58,15 @@
         "padding-block-end": 40
       }
     },
+    "collection-tabs": {
+      "type": "collection-tabs",
+      "settings": {
+        "color_scheme": "scheme-8",
+        "section_width": "full-width",
+        "padding-block-start": 24,
+        "padding-block-end": 24
+      }
+    },
     "main": {
       "type": "main-collection",
       "blocks": {
@@ -201,6 +210,7 @@
   },
   "order": [
     "hero",
+    "collection-tabs",
     "main"
   ]
 }
