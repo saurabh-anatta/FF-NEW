@@ -233,8 +233,8 @@
     "benefits": {
       "type": "benefits",
       "settings": {
-        "heading": "The Factor Standard",
-        "color_scheme": "scheme-1",
+        "heading": "Why Factor Form",
+        "color_scheme": "scheme-3",
         "section_width": "page-width",
         "padding-block-start": 80,
         "padding-block-end": 80
@@ -243,29 +243,37 @@
         "benefit_1": {
           "type": "benefit",
           "settings": {
-            "icon_image": "shopify://shop_images/image-60-mobile-110864911.png",
-            "heading": "Pure Ingredients",
-            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit."
+            "icon_asset": "icon-1-nutrition-all-in-one-place.svg",
+            "heading": "More Flexibility",
+            "description": "Build a personalized wellness routine with targeted formulas for gut health, immunity, recovery, and more"
           }
         },
         "benefit_2": {
           "type": "benefit",
           "settings": {
-            "icon_image": "shopify://shop_images/image-60-mobile-110864911.png",
-            "heading": "Expert-Crafted Blends",
-            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit."
+            "icon_asset": "icon-2-quality-ingredients.svg",
+            "heading": "More Quality",
+            "description": "Made with no added sugar, our products are keto-friendly and free of unnecessary ingredients"
           }
         },
         "benefit_3": {
           "type": "benefit",
           "settings": {
-            "icon_image": "shopify://shop_images/image-60-mobile-110864911.png",
-            "heading": "Transparent and Clean Labels",
-            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit."
+            "icon_asset": "icon-3-b-food-first-nutrition.svg",
+            "heading": "More Nutrition",
+            "description": "Enjoy dietitian-approved formulas packed with premium, nutritional ingredients."
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "icon_asset": "icon-4-designed-for-on-the-go.svg",
+            "heading": "More Convenience",
+            "description": "Take your life on the go with our single-serving packets you can tuck in your bag, car, or suitcase."
           }
         }
       },
-      "block_order": ["benefit_1", "benefit_2", "benefit_3"]
+      "block_order": ["benefit_1", "benefit_2", "benefit_3", "benefit_4"]
     },
     "dietitians": {
       "type": "dietitians",
