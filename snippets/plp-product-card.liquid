@@ -1,0 +1,110 @@
+{%- doc -%}
+  PLP Product Card
+
+  Renders a product card for the PLP collection section.
+  Includes image with badges, progress bar, title, description,
+  pricing with per-day cost, and ADD TO CART link.
+
+  @param {Object} product - Product object (required)
+
+  @example
+  {% render 'plp-product-card', product: product %}
+{%- enddoc -%}
+
+{%- liquid
+  assign product = product | default: empty
+  unless product != empty
+    break
+  endunless
+-%}
+
+<div class="plp-card">
+  <div class="plp-card__image-wrap">
+    <a href="{{ product.url }}" class="plp-card__image-link" aria-label="{{ product.title | escape }}">
+      {%- if product.featured_image != blank -%}
+        {%- assign prod_sizes = '(min-width: 750px) 328px, 50vw' -%}
+        {{
+          product.featured_image
+          | image_url: width: product.featured_image.width
+          | image_tag:
+            sizes: prod_sizes,
+            widths: '160,320,328,656',
+            loading: 'lazy',
+            alt: product.title,
+            class: 'plp-card__img'
+        }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'plp-card__placeholder' }}
+      {%- endif -%}
+    </a>
+
+    <div class="plp-card__badges">
+      {%- for tag in product.tags -%}
+        {%- if tag contains 'badge:' -%}
+          {%- assign badge_text = tag | remove: 'badge:' | strip -%}
+          {%- assign badge_upper = badge_text | upcase -%}
+          {%- assign badge_lower = badge_text | downcase -%}
+          {%- assign is_sale_badge = false -%}
+          {%- assign is_white_badge = false -%}
+          {%- if badge_lower contains 'off' or badge_lower contains 'sale' -%}
+            {%- assign is_sale_badge = true -%}
+          {%- elsif badge_upper == 'NEW' or badge_upper == 'BESTSELLER' or badge_upper == 'BEST VALUE' -%}
+            {%- assign is_white_badge = true -%}
+          {%- endif -%}
+          <span class="plp-card__badge{% if is_sale_badge %} plp-card__badge--sale{% elsif is_white_badge %} plp-card__badge--white{% endif %}">
+            {{ badge_text }}
+          </span>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if product.compare_at_price > product.price -%}
+        {%- assign save_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+        {%- assign has_sale_tag = false -%}
+        {%- for tag in product.tags -%}
+          {%- if tag contains 'badge:' -%}
+            {%- assign badge_lower = tag | downcase -%}
+            {%- if badge_lower contains 'off' or badge_lower contains 'sale' -%}
+              {%- assign has_sale_tag = true -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- unless has_sale_tag -%}
+          <span class="plp-card__badge plp-card__badge--sale">
+            {{ save_percent }}% OFF
+          </span>
+        {%- endunless -%}
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="plp-card__progress">
+    <div class="plp-card__progress-track"></div>
+    <div class="plp-card__progress-fill"></div>
+  </div>
+
+  <div class="plp-card__content">
+    <div class="plp-card__info">
+      <a href="{{ product.url }}" class="plp-card__title-link">
+        <h4 class="plp-card__title">{{ product.title | escape }}</h4>
+      </a>
+      {%- if product.description != blank -%}
+        <p class="plp-card__desc">{{ product.description | strip_html | truncate: 80 }}</p>
+      {%- endif -%}
+    </div>
+    <div class="plp-card__bottom">
+      <div class="plp-card__pricing">
+        <div class="plp-card__pricing-top">
+          <span class="plp-card__price">{{ product.price | money }}</span>
+          {%- if product.compare_at_price > product.price -%}
+            <span class="plp-card__compare-price">{{ product.compare_at_price | money }}</span>
+          {%- endif -%}
+        </div>
+        {%- if product.metafields.custom.per_day_price != blank -%}
+          <span class="plp-card__per-day">{{ product.metafields.custom.per_day_price }}</span>
+        {%- endif -%}
+      </div>
+      <a href="{{ product.url }}" class="plp-card__add-to-cart">
+        {{ 'products.product.add_to_cart' | t }}
+      </a>
+    </div>
+  </div>
+</div>

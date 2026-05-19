@@ -152,7 +152,8 @@
     "width": "Width",
     "width_is_automatically_optimized": "Width is automatically optimized for mobile.",
     "app_required_for_ratings": "An app is required for product ratings. [Learn more](https://help.shopify.com/manual/apps)",
-    "navigation": "Navigation"
+    "navigation": "Navigation",
+    "feature_card": "Feature card"
   },
   "html_defaults": {
     "join_our_email_list": "<h2>Join our email list</h2>",
@@ -447,7 +448,8 @@
     "benefit_item": "Benefit item",
     "xl_certified": "The Factor Standard",
     "certification": "Certification",
-    "collection_tabs": "Collection tabs"
+    "collection_tabs": "Collection tabs",
+    "plp_collection": "PLP collection"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -1204,7 +1206,14 @@
     "subtitle": "Subtitle",
     "author_name": "Author name",
     "author_role": "Author role",
-    "description": "Description"
+    "description": "Description",
+    "show_feature_card": "Show feature card",
+    "feature_image": "Feature image",
+    "feature_title": "Feature title",
+    "feature_description": "Feature description",
+    "feature_cta_text": "Feature CTA text",
+    "feature_cta_link": "Feature CTA link",
+    "feature_card_position": "Feature card position"
   },
   "text_defaults": {
     "accordion_heading": "Accordion heading",
