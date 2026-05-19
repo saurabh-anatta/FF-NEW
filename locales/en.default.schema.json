@@ -439,7 +439,9 @@
     "review": "Review",
     "product_carousel_tabs": "Product carousel",
     "collection_tab": "Collection tab",
-    "benefits": "Benefits"
+    "benefits": "Benefits",
+    "dietitians": "Dietitians",
+    "testimonial": "Testimonial"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -1189,7 +1191,11 @@
     "category_description": "Category description",
     "category_cta_text": "CTA text",
     "category_link": "Category link",
-    "max_products": "Max products"
+    "max_products": "Max products",
+    "subtitle": "Subtitle",
+    "author_name": "Author name",
+    "author_role": "Author role",
+    "description": "Description"
   },
   "text_defaults": {
     "accordion_heading": "Accordion heading",
