@@ -1,0 +1,61 @@
+{% comment %}
+  Custom Font Loading — Factor Form Brand Fonts
+
+  Simplon Norm: Commercial font — merchant must upload .woff2 files to theme assets:
+    - simplon-norm-light.woff2  (weight 300)
+    - simplon-norm-regular.woff2 (weight 400)
+    - simplon-norm-medium.woff2 (weight 500)
+    - simplon-norm-bold.woff2   (weight 700)
+
+  Plus Jakarta Sans: Loaded via Google Fonts <link> in layout/theme.liquid.
+
+  This snippet MUST be rendered in layout/theme.liquid AFTER {{ content_for_header }}
+  and after the base theme <style> tags so the CSS variable overrides take effect.
+{% endcomment %}
+
+<style>
+  /* Simplon Norm — @font-face declarations */
+  @font-face {
+    font-family: 'Simplon Norm';
+    src: url({{ 'simplon-norm-light.woff2' | asset_url }}) format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Simplon Norm';
+    src: url({{ 'simplon-norm-regular.woff2' | asset_url }}) format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Simplon Norm';
+    src: url({{ 'simplon-norm-medium.woff2' | asset_url }}) format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Simplon Norm';
+    src: url({{ 'simplon-norm-bold.woff2' | asset_url }}) format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Override CSS font-family variables with brand fonts.
+     These override the font_picker-generated values from theme-styles-variables.liquid.
+     Simplon Norm → headings + accent (used by buttons via type_font_button: accent)
+     Plus Jakarta Sans → body + subheading (loaded via Google Fonts link) */
+  :root {
+    --font-heading--family: 'Simplon Norm', sans-serif;
+    --font-heading--weight: 300;
+    --font-accent--family: 'Simplon Norm', sans-serif;
+    --font-body--family: 'Plus Jakarta Sans', sans-serif;
+    --font-subheading--family: 'Plus Jakarta Sans', sans-serif;
+  }
+</style>
