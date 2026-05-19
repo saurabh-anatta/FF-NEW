@@ -206,11 +206,173 @@
         "padding-block-start": 0,
         "padding-block-end": 32
       }
+    },
+    "faq": {
+      "type": "section",
+      "blocks": {
+        "faq_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Frequently Asked Questions</h2>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "h2",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          }
+        },
+        "faq_accordion": {
+          "type": "accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h5",
+            "inherit_color_scheme": true,
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "row_1": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What makes Factor Form products different?",
+                "open_by_default": true
+              },
+              "blocks": {
+                "answer_1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Factor Form products are built with clean, science-backed ingredients chosen for real, functional benefits; not trends or fillers. Each formula is optimised for daily performance, energy, and recovery</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "type_preset": "rte",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  }
+                }
+              },
+              "block_order": ["answer_1"]
+            },
+            "row_2": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Are Factor Form products third-party tested?"
+              },
+              "blocks": {
+                "answer_2": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p></p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "type_preset": "rte",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  }
+                }
+              },
+              "block_order": ["answer_2"]
+            },
+            "row_3": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Are Factor Form products safe to use together?"
+              },
+              "blocks": {
+                "answer_3": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p></p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "type_preset": "rte",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  }
+                }
+              },
+              "block_order": ["answer_3"]
+            },
+            "row_4": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Do you ship internationally?"
+              },
+              "blocks": {
+                "answer_4": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p></p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "type_preset": "rte",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  }
+                }
+              },
+              "block_order": ["answer_4"]
+            },
+            "row_5": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What is your return policy?"
+              },
+              "blocks": {
+                "answer_5": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p></p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "type_preset": "rte",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  }
+                }
+              },
+              "block_order": ["answer_5"]
+            }
+          },
+          "block_order": ["row_1", "row_2", "row_3", "row_4", "row_5"]
+        }
+      },
+      "block_order": ["faq_heading", "faq_accordion"],
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "gap": 64,
+        "section_width": "page-width",
+        "section_height": "",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
     }
   },
   "order": [
     "hero",
     "collection-tabs",
-    "main"
+    "main",
+    "faq"
   ]
 }
