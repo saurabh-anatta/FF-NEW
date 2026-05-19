@@ -229,7 +229,52 @@
         }
       },
       "block_order": ["text_1", "divider_1", "text_2", "divider_2", "text_3", "divider_3", "text_4", "divider_4", "text_5", "divider_5", "text_6"]
+    },
+    "benefits": {
+      "type": "benefits",
+      "settings": {
+        "heading": "Why Factor Form",
+        "color_scheme": "scheme-3",
+        "section_width": "page-width",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      },
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "icon_asset": "icon-1-nutrition-all-in-one-place-2.svg",
+            "heading": "More Flexibility",
+            "description": "Build a personalized wellness routine with targeted formulas for gut health, immunity, recovery, and more"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "icon_asset": "icon-2-quality-ingredients-2.svg",
+            "heading": "More Quality",
+            "description": "Made with no added sugar, our products are keto-friendly and free of unnecessary ingredients"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "icon_asset": "icon-3-b-food-first-nutrition-2.svg",
+            "heading": "More Nutrition",
+            "description": "Enjoy dietitian-approved formulas packed with premium, nutritional ingredients."
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "icon_asset": "icon-4-designed-for-on-the-go-2.svg",
+            "heading": "More Convenience",
+            "description": "Take your life on the go with our single-serving packets you can tuck in your bag, car, or suitcase."
+          }
+        }
+      },
+      "block_order": ["benefit_1", "benefit_2", "benefit_3", "benefit_4"]
     }
   },
-  "order": ["hero", "product-carousel-tabs", "marquee-ticker"]
+  "order": ["hero", "product-carousel-tabs", "marquee-ticker", "benefits"]
 }
