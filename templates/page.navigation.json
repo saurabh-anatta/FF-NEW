@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "all-products": {
+      "type": "plp-collection",
+      "settings": {
+        "heading": "All Products",
+        "description": "Performance-focused nutrition essentials, made to help you feel better, move better, and live better.",
+        "layout": "grid",
+        "max_products": 8,
+        "show_feature_card": true,
+        "feature_image": "shopify://shop_images/content-desktop-92675539.jpg",
+        "feature_title": "Free Welcome Kit",
+        "feature_description": "Free shaker + 3 full-size samples ($36 value) with your first Daily Greens purchase",
+        "feature_cta_text": "SHOP DAILY GREENS",
+        "feature_card_position": 4,
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 48,
+        "padding-block-end": 24
+      }
+    }
+  },
+  "order": [
+    "all-products"
+  ]
+}
