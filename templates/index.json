@@ -33,7 +33,7 @@
         "heading": {
           "type": "text",
           "settings": {
-            "text": "Your Daily Greens, Reinvented",
+            "text": "<h1>Your Daily Greens, Reinvented</h1>",
             "type_preset": "h1",
             "max_width": "narrow"
           }
@@ -41,7 +41,7 @@
         "description": {
           "type": "text",
           "settings": {
-            "text": "Better taste. Better routine. Better you.",
+            "text": "<p>Better taste. Better routine. Better you.</p>",
             "type_preset": "paragraph",
             "max_width": "narrow",
             "padding-block-end": 24
