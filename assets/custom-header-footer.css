@@ -1,0 +1,152 @@
+/* ============================================
+   Custom Header & Footer Overrides
+   Scoped CSS to match Figma designs.
+   Cannot be achieved via JSON settings alone.
+   ============================================ */
+
+/* --- Header: Nav link gap override ---
+   Figma shows 44px between nav items;
+   theme default --gap-xl is 20px. */
+.header-section .menu-list {
+  --menu-horizontal-gap: 44px;
+}
+
+/* --- Header: Split-nav positioning ---
+   Push the 5th+ menu items (Science, FAQs) to the right
+   to match the Figma 3-column header layout:
+   logo | product-links | info-links + icons.
+   Fragile: depends on menu having exactly 4 product links
+   followed by 2 info links. */
+.header-section .menu-list__list-item:nth-child(5) {
+  margin-inline-start: auto;
+}
+
+/* --- Header: Action icons gap ---
+   Figma shows 24px gap between person and cart icons. */
+.header-section .header__actions {
+  gap: 24px;
+}
+
+/* --- Mobile announcement bar font-size ---
+   Figma mobile uses 12px/16px vs 14px/20px desktop. */
+@media screen and (max-width: 749px) {
+  .announcement-bar .text-block {
+    --font-size: 0.75rem;
+    --line-height: 1rem;
+  }
+}
+
+/* --- Footer: Policy links ---
+   Figma shows underlined links in #F1F1EA. */
+.footer-utilities .utilities a {
+  text-decoration: underline;
+  color: #F1F1EA;
+}
+
+/* --- Footer: Policy trigger button ---
+   Match link style to policy items. */
+.footer-utilities .policy-list-trigger {
+  text-decoration: underline;
+  color: #F1F1EA;
+}
+
+/* --- Footer: Menu heading typography ---
+   Desktop: Simplon Norm 500 18px/28px.
+   Mobile: 16px/24px. */
+.footer-content .menu__heading {
+  font-family: var(--font-heading--family);
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+@media screen and (max-width: 749px) {
+  .footer-content .menu__heading {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+/* --- Footer: Menu link typography ---
+   Desktop: Plus Jakarta Sans 400 16px/24px.
+   Mobile: 14px/20px. */
+.footer-content .menu__item {
+  font-family: var(--font-body--family);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+@media screen and (max-width: 749px) {
+  .footer-content .menu__item {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+/* --- Footer: Menu item mobile spacing ---
+   Figma mobile shows 8px gap vs 12px desktop. */
+@media screen and (max-width: 749px) {
+  .footer-content .menu__item + .menu__item {
+    margin-block-start: 8px;
+  }
+}
+
+/* --- Footer: Social icon sizing ---
+   Desktop: 32px icons. Mobile: 28px. */
+.footer-utilities .social-icons__icon-wrapper {
+  height: 32px;
+  width: 32px;
+}
+
+.footer-utilities .social-icons__icon-wrapper:has(.social-icons__icon path) {
+  width: 32px;
+}
+
+.footer-utilities .social-icons__icon {
+  width: 32px;
+  height: 32px;
+}
+
+@media screen and (max-width: 749px) {
+  .footer-utilities .social-icons__icon-wrapper {
+    height: 28px;
+    width: 28px;
+  }
+
+  .footer-utilities .social-icons__icon-wrapper:has(.social-icons__icon path) {
+    width: 28px;
+  }
+
+  .footer-utilities .social-icons__icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* --- Footer: Logo positioning ---
+   Desktop: Push logo below newsletter content.
+   Mobile: Logo stays first (natural block order). */
+@media screen and (min-width: 750px) {
+  .footer-content .group-block-content > .logo-block {
+    order: 99;
+  }
+}
+
+/* --- Footer: Email signup placeholder color ---
+   Figma shows #80806F for placeholder text. */
+.footer-content .email-signup__input::placeholder {
+  color: #80806F;
+}
+
+/* --- Footer: Email signup border color ---
+   Figma shows white 1px border on dark bg. */
+.footer-content .email-signup__input-group--integrated {
+  border-color: #FFFFFF;
+}
+
+/* --- Footer: Email signup input text color ---
+   Ensure input text is white on dark bg. */
+.footer-content .email-signup__input {
+  color: #FFFFFF;
+}
