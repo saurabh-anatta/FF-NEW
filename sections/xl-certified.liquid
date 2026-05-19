@@ -82,10 +82,19 @@
     flex: 1 1 280px;
   }
 
-  .xl-certified__image img {
-    display: block;
+  .xl-certified__image {
     width: 148px;
     height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .xl-certified__image img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
   }
 
