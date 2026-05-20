@@ -168,7 +168,7 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 24px;
-    color: #141414;
+    color: #263628;
     margin: 0;
   }
 
@@ -494,6 +494,7 @@
     .plp-collection__heading {
       font-size: 24px;
       line-height: 32px;
+      color: #263628;
     }
 
     .plp-collection__description {
@@ -507,7 +508,11 @@
     }
 
     .plp-collection__products--row {
-      gap: 32px;
+      column-gap: 32px;
+      row-gap: 24px;
+      flex-wrap: wrap;
+      overflow-x: visible;
+      scroll-snap-type: none;
     }
 
     .plp-collection__products--row > .plp-card {
