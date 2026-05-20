@@ -54,6 +54,15 @@
       },
       "block_order": ["shop_all_text"]
     },
+    "collection-tabs": {
+      "type": "collection-tabs",
+      "settings": {
+        "color_scheme": "scheme-8",
+        "section_width": "full-width",
+        "padding-block-start": 24,
+        "padding-block-end": 24
+      }
+    },
     "main": {
       "type": "main-collection",
       "settings": {}
@@ -61,6 +70,7 @@
   },
   "order": [
     "hero",
+    "collection-tabs",
     "main"
   ]
 }
