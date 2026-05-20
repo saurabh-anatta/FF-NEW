@@ -1,0 +1,284 @@
+{%- liquid
+  assign color_scheme = section.settings.color_scheme
+  assign section_width = section.settings.section_width
+  assign alignment = section.settings.alignment | default: 'center'
+  assign tabs_sticky = section.settings.tabs_sticky
+-%}
+
+<div
+  class="section spacing-style color-{{ color_scheme }} page-section-tabs{% if tabs_sticky %} page-section-tabs--sticky{% endif %}"
+  style="{%- render 'spacing-style', settings: section.settings -%}"
+>
+  <div class="page-section-tabs__inner {% if section_width == 'page-width' %}page-width{% else %}full-width{% endif %}">
+    {%- if section.blocks.size > 0 -%}
+      <nav class="page-section-tabs__nav" aria-label="{{ section.settings.heading | default: 'Section navigation' | escape }}">
+        <ul class="page-section-tabs__list page-section-tabs__list--{{ alignment }}" role="list">
+          {%- for block in section.blocks -%}
+            {%- assign target = block.settings.target_id | strip | downcase -%}
+            <li class="page-section-tabs__item" {{ block.shopify_attributes }}>
+              <a
+                href="#{{ target }}"
+                class="page-section-tabs__tab"
+                data-page-section-tab
+                data-target="{{ target }}"
+              >
+                {{- block.settings.label | escape -}}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    var tabs = document.querySelectorAll('[data-page-section-tab]');
+    if (!tabs.length) return;
+
+    function setActive(targetId) {
+      tabs.forEach(function (tab) {
+        if (tab.dataset.target === targetId) {
+          tab.classList.add('page-section-tabs__tab--active');
+          tab.setAttribute('aria-current', 'true');
+        } else {
+          tab.classList.remove('page-section-tabs__tab--active');
+          tab.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function (e) {
+        var targetId = tab.dataset.target;
+        var target = document.getElementById(targetId);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setActive(targetId);
+        if (history && history.replaceState) {
+          history.replaceState(null, '', '#' + targetId);
+        }
+      });
+    });
+
+    var sections = [];
+    tabs.forEach(function (tab) {
+      var section = document.getElementById(tab.dataset.target);
+      if (section) sections.push(section);
+    });
+
+    if ('IntersectionObserver' in window && sections.length) {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
+      );
+      sections.forEach(function (s) {
+        observer.observe(s);
+      });
+    }
+  })();
+</script>
+
+{% stylesheet %}
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .page-section-tabs {
+    display: block;
+  }
+
+  .page-section-tabs--sticky {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: rgb(var(--color-background));
+  }
+
+  .page-section-tabs__inner {
+    display: block;
+  }
+
+  .page-section-tabs__nav {
+    border-bottom: 1px solid rgba(20, 20, 20, 0.12);
+  }
+
+  .page-section-tabs__list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .page-section-tabs__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-section-tabs__list--left {
+    justify-content: flex-start;
+  }
+
+  .page-section-tabs__list--center {
+    justify-content: center;
+  }
+
+  .page-section-tabs__list--right {
+    justify-content: flex-end;
+  }
+
+  .page-section-tabs__item {
+    flex-shrink: 0;
+  }
+
+  .page-section-tabs__tab {
+    display: inline-block;
+    padding: 12px 0;
+    font-family: var(--font-body--family);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #141414;
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .page-section-tabs__tab:hover {
+    color: #2A523F;
+  }
+
+  .page-section-tabs__tab--active {
+    border-bottom-color: #141414;
+  }
+
+  @media screen and (min-width: 750px) {
+    .page-section-tabs__list {
+      gap: 48px;
+    }
+
+    .page-section-tabs__tab {
+      padding: 16px 0;
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Page section tabs",
+  "class": "page-section-tabs-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "tabs_sticky",
+      "label": "Stick to top on scroll",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.section_width",
+      "options": [
+        { "value": "page-width", "label": "t:options.page" },
+        { "value": "full-width", "label": "t:options.full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tab label",
+          "default": "Tab"
+        },
+        {
+          "type": "text",
+          "id": "target_id",
+          "label": "Target section anchor ID",
+          "info": "Must match the Anchor ID of a section on this page (e.g. 'gut-health')."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Page section tabs",
+      "blocks": [
+        { "type": "tab", "settings": { "label": "Gut Health", "target_id": "gut-health" } },
+        { "type": "tab", "settings": { "label": "Recovery", "target_id": "recovery" } },
+        { "type": "tab", "settings": { "label": "Immunity", "target_id": "immunity" } },
+        { "type": "tab", "settings": { "label": "Energy & Focus", "target_id": "energy-focus" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

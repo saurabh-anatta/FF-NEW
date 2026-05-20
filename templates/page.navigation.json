@@ -3,6 +3,8 @@
     "all-products": {
       "type": "plp-collection",
       "settings": {
+        "collection": "health-nutrician",
+        "anchor_id": "all-products",
         "heading": "All Products",
         "description": "Performance-focused nutrition essentials, made to help you feel better, move better, and live better.",
         "layout": "grid",
@@ -19,9 +21,41 @@
         "padding-block-end": 24
       }
     },
+    "section-tabs": {
+      "type": "page-section-tabs",
+      "blocks": {
+        "tab-gut": {
+          "type": "tab",
+          "settings": { "label": "Gut Health", "target_id": "gut-health" }
+        },
+        "tab-recovery": {
+          "type": "tab",
+          "settings": { "label": "Recovery", "target_id": "recovery" }
+        },
+        "tab-immunity": {
+          "type": "tab",
+          "settings": { "label": "Immunity", "target_id": "immunity" }
+        },
+        "tab-energy": {
+          "type": "tab",
+          "settings": { "label": "Energy & Focus", "target_id": "energy-focus" }
+        }
+      },
+      "block_order": ["tab-gut", "tab-recovery", "tab-immunity", "tab-energy"],
+      "settings": {
+        "alignment": "center",
+        "tabs_sticky": false,
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 24,
+        "padding-block-end": 24
+      }
+    },
     "gut-health": {
       "type": "plp-collection",
       "settings": {
+        "collection": "health-nutrician",
+        "anchor_id": "gut-health",
         "heading": "Gut Health",
         "description": "Formulated with prebiotics and probiotics to support smooth digestion, reduce bloating and nurture your gut microbiome",
         "layout": "grid",
@@ -36,6 +70,8 @@
     "recovery": {
       "type": "plp-collection",
       "settings": {
+        "collection": "refuel-with-iqbar®",
+        "anchor_id": "recovery",
         "heading": "Recovery",
         "description": "Restore, rebuild, and recharge after every workout",
         "layout": "grid",
@@ -50,6 +86,8 @@
     "immunity": {
       "type": "plp-collection",
       "settings": {
+        "collection": "hydrate-with-iqmix®",
+        "anchor_id": "immunity",
         "heading": "Immunity",
         "description": "Formulated with prebiotics and probiotics to support smooth digestion, reduce bloating and nurture your gut microbiome",
         "layout": "grid",
@@ -64,6 +102,8 @@
     "energy-focus": {
       "type": "plp-collection",
       "settings": {
+        "collection": "energize-with-iqjoe®",
+        "anchor_id": "energy-focus",
         "heading": "Energy & Focus",
         "description": "Formulated with prebiotics and probiotics to support smooth digestion, reduce bloating and nurture your gut microbiome",
         "layout": "grid",
@@ -361,6 +401,7 @@
   },
   "order": [
     "all-products",
+    "section-tabs",
     "gut-health",
     "recovery",
     "immunity",

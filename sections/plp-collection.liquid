@@ -13,9 +13,11 @@
   assign feature_card_position = section.settings.feature_card_position | default: 4
   assign color_scheme = section.settings.color_scheme
   assign section_width = section.settings.section_width
+  assign anchor_id = section.settings.anchor_id
 -%}
 
 <div
+  {% if anchor_id != blank %}id="{{ anchor_id }}"{% endif %}
   class="section spacing-style color-{{ color_scheme }} plp-collection"
   style="{%- render 'spacing-style', settings: section.settings -%}"
 >
@@ -149,6 +151,7 @@
   /* Section layout */
   .plp-collection {
     display: block;
+    scroll-margin-top: 80px;
   }
 
   .plp-collection__inner {
@@ -625,6 +628,12 @@
       "type": "collection",
       "id": "collection",
       "label": "t:settings.collection"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "info": "Used for tab links (e.g. 'gut-health'). Letters, numbers, hyphens only."
     },
     {
       "type": "text",
