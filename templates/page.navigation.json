@@ -1,9 +1,18 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "all-products": {
       "type": "plp-collection",
       "settings": {
-        "collection": "health-nutrician",
+        "collection": "all",
         "anchor_id": "all-products",
         "heading": "All Products",
         "description": "Performance-focused nutrition essentials, made to help you feel better, move better, and live better.",
@@ -26,22 +35,39 @@
       "blocks": {
         "tab-gut": {
           "type": "tab",
-          "settings": { "label": "Gut Health", "target_id": "gut-health" }
+          "settings": {
+            "label": "Gut Health",
+            "target_id": "gut-health"
+          }
         },
         "tab-recovery": {
           "type": "tab",
-          "settings": { "label": "Recovery", "target_id": "recovery" }
+          "settings": {
+            "label": "Recovery",
+            "target_id": "recovery"
+          }
         },
         "tab-immunity": {
           "type": "tab",
-          "settings": { "label": "Immunity", "target_id": "immunity" }
+          "settings": {
+            "label": "Immunity",
+            "target_id": "immunity"
+          }
         },
         "tab-energy": {
           "type": "tab",
-          "settings": { "label": "Energy & Focus", "target_id": "energy-focus" }
+          "settings": {
+            "label": "Energy & Focus",
+            "target_id": "energy-focus"
+          }
         }
       },
-      "block_order": ["tab-gut", "tab-recovery", "tab-immunity", "tab-energy"],
+      "block_order": [
+        "tab-gut",
+        "tab-recovery",
+        "tab-immunity",
+        "tab-energy"
+      ],
       "settings": {
         "alignment": "center",
         "tabs_sticky": false,
@@ -54,7 +80,7 @@
     "gut-health": {
       "type": "plp-collection",
       "settings": {
-        "collection": "health-nutrician",
+        "collection": "women",
         "anchor_id": "gut-health",
         "heading": "Gut Health",
         "description": "Formulated with prebiotics and probiotics to support smooth digestion, reduce bloating and nurture your gut microbiome",
@@ -70,7 +96,7 @@
     "recovery": {
       "type": "plp-collection",
       "settings": {
-        "collection": "refuel-with-iqbar®",
+        "collection": "men",
         "anchor_id": "recovery",
         "heading": "Recovery",
         "description": "Restore, rebuild, and recharge after every workout",
@@ -86,7 +112,7 @@
     "immunity": {
       "type": "plp-collection",
       "settings": {
-        "collection": "hydrate-with-iqmix®",
+        "collection": "necklace",
         "anchor_id": "immunity",
         "heading": "Immunity",
         "description": "Formulated with prebiotics and probiotics to support smooth digestion, reduce bloating and nurture your gut microbiome",
@@ -102,7 +128,7 @@
     "energy-focus": {
       "type": "plp-collection",
       "settings": {
-        "collection": "energize-with-iqjoe®",
+        "collection": "beauty-skincare",
         "anchor_id": "energy-focus",
         "heading": "Energy & Focus",
         "description": "Formulated with prebiotics and probiotics to support smooth digestion, reduce bloating and nurture your gut microbiome",

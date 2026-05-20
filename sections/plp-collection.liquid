@@ -13,11 +13,11 @@
   assign feature_card_position = section.settings.feature_card_position | default: 4
   assign color_scheme = section.settings.color_scheme
   assign section_width = section.settings.section_width
-  assign anchor_id = section.settings.anchor_id
+  assign anchor_id = section.settings.anchor_id | default: section.id
 -%}
 
 <div
-  {% if anchor_id != blank %}id="{{ anchor_id }}"{% endif %}
+  id="{{ anchor_id }}"
   class="section spacing-style color-{{ color_scheme }} plp-collection"
   style="{%- render 'spacing-style', settings: section.settings -%}"
 >
