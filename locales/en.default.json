@@ -315,6 +315,11 @@
     // Separates min and max values in price range filter
     "separator": "to"
   },
+  "general": {
+    "breadcrumbs": {
+      "home": "Home"
+    }
+  },
   "gift_cards": {
     "issued": {
       "how_to_use_gift_card": "Use the gift card code online or QR code in-store",

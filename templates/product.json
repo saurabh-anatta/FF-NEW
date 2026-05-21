@@ -9,6 +9,17 @@
  */
  {
   "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {
+        "separator": "/",
+        "show_collection": true,
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    },
     "main": {
       "type": "product-information",
       "blocks": {
@@ -499,6 +510,7 @@
     }
   },
   "order": [
+    "breadcrumbs",
     "main",
     "comparison_table",
     "product_recommendations_qggXJq"

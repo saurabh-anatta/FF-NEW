@@ -1,0 +1,143 @@
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+>
+  <div
+    class="spacing-style"
+    style="{% render 'spacing-style', settings: section.settings %}"
+  >
+    <nav aria-label="Breadcrumb" class="breadcrumbs">
+      <ol class="breadcrumbs__list">
+        <li class="breadcrumbs__item">
+          <a href="/" class="breadcrumbs__link">{{ 'general.breadcrumbs.home' | t }}</a>
+        </li>
+        {% if section.settings.show_collection and product.collections.first %}
+          <li class="breadcrumbs__item">
+            <span class="breadcrumbs__separator" aria-hidden="true">{{ section.settings.separator }}</span>
+          </li>
+          <li class="breadcrumbs__item">
+            <a href="{{ product.collections.first.url }}" class="breadcrumbs__link">{{ product.collections.first.title | escape }}</a>
+          </li>
+        {% endif %}
+        <li class="breadcrumbs__item">
+          <span class="breadcrumbs__separator" aria-hidden="true">{{ section.settings.separator }}</span>
+        </li>
+        <li class="breadcrumbs__item">
+          <span class="breadcrumbs__current" aria-current="page">{{ product.title | escape }}</span>
+        </li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+{% stylesheet %}
+  .breadcrumbs__list {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumbs__item {
+    font-family: var(--font-body--family);
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--color-foreground);
+  }
+
+  .breadcrumbs__link {
+    color: var(--color-foreground);
+    text-decoration: none;
+  }
+
+  .breadcrumbs__link:hover {
+    text-decoration: underline;
+  }
+
+  .breadcrumbs__separator {
+    color: var(--color-foreground);
+    user-select: none;
+  }
+
+  .breadcrumbs__current {
+    color: var(--color-foreground);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.breadcrumbs",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator",
+      "default": "/"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection",
+      "label": "Show collection",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:content.colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.section_width",
+      "options": [
+        { "value": "page-width", "label": "t:options.page_width" },
+        { "value": "full-width", "label": "t:options.full_width" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.breadcrumbs"
+    }
+  ]
+}
+{% endschema %}
