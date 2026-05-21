@@ -268,6 +268,94 @@
         "padding-block-end": 0
       }
     },
+    "comparison_table": {
+      "type": "comparison-table",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "feature_text": "#1 in taste, texture & aroma",
+            "is_category_header": false,
+            "brand_has": true,
+            "competitor_has": false,
+            "show_divider": false
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "feature_text": "More reasons",
+            "is_category_header": true,
+            "brand_has": true,
+            "competitor_has": false,
+            "show_divider": false
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "feature_text": "1 full serving of vegetables",
+            "is_category_header": false,
+            "brand_has": true,
+            "competitor_has": false,
+            "show_divider": true
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "feature_text": "No megadoses (<100% DV)",
+            "is_category_header": false,
+            "brand_has": true,
+            "competitor_has": false,
+            "show_divider": true
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "feature_text": "Under $2 per serving",
+            "is_category_header": false,
+            "brand_has": true,
+            "competitor_has": false,
+            "show_divider": true
+          }
+        },
+        "row_6": {
+          "type": "row",
+          "settings": {
+            "feature_text": "Single-serving packets",
+            "is_category_header": false,
+            "brand_has": true,
+            "competitor_has": true,
+            "show_divider": true
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5",
+        "row_6"
+      ],
+      "settings": {
+        "heading": "Better Taste, Better Results",
+        "description": "76% stick with Factor Form longer because of its award-winning taste.",
+        "image": "shopify://shop_images/4-3-better-result-section-109831570.jpg",
+        "brand_name": "Factor Form",
+        "brand_image": "shopify://shop_images/image-2-better-result-section-109831575.png",
+        "competitor_name": "Others",
+        "highlight_color": "#C4E0CB",
+        "footnote": "† In a 3rd-party blind taste test with 115 adults from the general population.",
+        "footnote_image": "shopify://shop_images/image-4-better-result-section-109831644.png",
+        "color_scheme": "scheme-2",
+        "section_width": "page-width",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
     "product_recommendations_qggXJq": {
       "type": "product-recommendations",
       "blocks": {
@@ -412,6 +500,7 @@
   },
   "order": [
     "main",
+    "comparison_table",
     "product_recommendations_qggXJq"
   ]
 }
