@@ -3,16 +3,17 @@
   assign section_width = section.settings.section_width
   assign alignment = section.settings.alignment | default: 'center'
   assign tabs_sticky = section.settings.tabs_sticky
+  assign tab_style = section.settings.tab_style | default: 'underline'
 -%}
 
 <div
-  class="section spacing-style color-{{ color_scheme }} page-section-tabs{% if tabs_sticky %} page-section-tabs--sticky{% endif %}"
+  class="section spacing-style color-{{ color_scheme }} page-section-tabs{% if tabs_sticky %} page-section-tabs--sticky{% endif %}{% if tab_style == 'pill' %} page-section-tabs--pill{% endif %}"
   style="{%- render 'spacing-style', settings: section.settings -%}"
 >
   <div class="page-section-tabs__inner {% if section_width == 'page-width' %}page-width{% else %}full-width{% endif %}">
     {%- if section.blocks.size > 0 -%}
-      <nav class="page-section-tabs__nav" aria-label="{{ section.settings.heading | default: 'Section navigation' | escape }}">
-        <ul class="page-section-tabs__list page-section-tabs__list--{{ alignment }}" role="list">
+      <nav class="page-section-tabs__nav{% if tab_style == 'pill' %} page-section-tabs__nav--pill{% endif %}" aria-label="{{ section.settings.heading | default: 'Section navigation' | escape }}">
+        <ul class="page-section-tabs__list page-section-tabs__list--{{ alignment }}{% if tab_style == 'pill' %} page-section-tabs__list--pill{% endif %}" role="list">
           {%- for block in section.blocks -%}
             {%- assign target = block.settings.target_id | strip | downcase -%}
             <li class="page-section-tabs__item" {{ block.shopify_attributes }}>
@@ -100,7 +101,7 @@
     position: sticky;
     top: 0;
     z-index: 5;
-    background: rgb(var(--color-background));
+    background: var(--color-background);
   }
 
   .page-section-tabs__inner {
@@ -176,6 +177,53 @@
       line-height: 24px;
     }
   }
+
+  /* Pill variant */
+  .page-section-tabs__nav--pill {
+    border-bottom: none;
+  }
+
+  .page-section-tabs__list--pill {
+    gap: 24px;
+    padding-inline: 16px;
+  }
+
+  .page-section-tabs__list--pill .page-section-tabs__tab {
+    border-radius: 24px;
+    border: 1px solid var(--color-foreground);
+    padding: 2px 24px 4px;
+    background: transparent;
+    color: var(--color-foreground);
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    border-bottom: none;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .page-section-tabs__list--pill .page-section-tabs__tab:hover {
+    background: var(--color-foreground);
+    color: var(--color-background);
+  }
+
+  .page-section-tabs__list--pill .page-section-tabs__tab--active {
+    background: var(--color-foreground);
+    color: var(--color-background);
+    border-color: var(--color-foreground);
+  }
+
+  @media screen and (min-width: 750px) {
+    .page-section-tabs__list--pill {
+      padding-inline: 64px;
+    }
+
+    .page-section-tabs__list--pill .page-section-tabs__tab {
+      font-size: 16px;
+      line-height: 24px;
+      padding: 2px 24px 4px;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -202,6 +250,16 @@
       "id": "tabs_sticky",
       "label": "Stick to top on scroll",
       "default": false
+    },
+    {
+      "type": "select",
+      "id": "tab_style",
+      "label": "Tab style",
+      "options": [
+        { "value": "underline", "label": "Underline" },
+        { "value": "pill", "label": "Pill" }
+      ],
+      "default": "underline"
     },
     {
       "type": "header",

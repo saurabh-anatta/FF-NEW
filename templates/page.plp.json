@@ -1,5 +1,86 @@
 {
   "sections": {
+    "plp-hero": {
+      "type": "hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/image-desktop-90581549.jpg",
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 12,
+        "section_width": "full-width",
+        "section_height": "small",
+        "color_scheme": "scheme-5",
+        "toggle_overlay": true,
+        "overlay_color": "#00000066",
+        "overlay_style": "gradient",
+        "gradient_direction": "to right",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      },
+      "blocks": {
+        "hero-heading": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Shop All</p>",
+            "type_preset": "h2",
+            "max_width": "none"
+          }
+        }
+      },
+      "block_order": ["hero-heading"]
+    },
+    "tabs": {
+      "type": "page-section-tabs",
+      "settings": {
+        "alignment": "left",
+        "tabs_sticky": true,
+        "tab_style": "pill",
+        "color_scheme": "scheme-8",
+        "section_width": "full-width",
+        "padding-block-start": 24,
+        "padding-block-end": 24
+      },
+      "blocks": {
+        "tab-all-products": {
+          "type": "tab",
+          "settings": {
+            "label": "All Products",
+            "target_id": "all-products"
+          }
+        },
+        "tab-gut-health": {
+          "type": "tab",
+          "settings": {
+            "label": "Gut Health",
+            "target_id": "gut-health"
+          }
+        },
+        "tab-recovery": {
+          "type": "tab",
+          "settings": {
+            "label": "Recovery",
+            "target_id": "recovery"
+          }
+        },
+        "tab-immunity": {
+          "type": "tab",
+          "settings": {
+            "label": "Immunity",
+            "target_id": "immunity"
+          }
+        },
+        "tab-energy-focus": {
+          "type": "tab",
+          "settings": {
+            "label": "Energy & Focus",
+            "target_id": "energy-focus"
+          }
+        }
+      },
+      "block_order": ["tab-all-products", "tab-gut-health", "tab-recovery", "tab-immunity", "tab-energy-focus"]
+    },
     "all-products": {
       "type": "plp-collection",
       "settings": {
@@ -13,6 +94,7 @@
         "feature_description": "Free shaker + 3 full-size samples ($36 value) with your first Daily Greens purchase",
         "feature_cta_text": "SHOP DAILY GREENS",
         "feature_card_position": 4,
+        "anchor_id": "all-products",
         "color_scheme": "scheme-1",
         "section_width": "page-width",
         "padding-block-start": 48,
@@ -27,6 +109,7 @@
         "layout": "row",
         "max_products": 8,
         "show_feature_card": false,
+        "anchor_id": "gut-health",
         "color_scheme": "scheme-1",
         "section_width": "page-width",
         "padding-block-start": 24,
@@ -41,6 +124,7 @@
         "layout": "row",
         "max_products": 8,
         "show_feature_card": false,
+        "anchor_id": "recovery",
         "color_scheme": "scheme-1",
         "section_width": "page-width",
         "padding-block-start": 24,
@@ -55,6 +139,22 @@
         "layout": "row",
         "max_products": 4,
         "show_feature_card": false,
+        "anchor_id": "immunity",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 24,
+        "padding-block-end": 0
+      }
+    },
+    "energy-focus": {
+      "type": "plp-collection",
+      "settings": {
+        "heading": "Energy & Focus",
+        "description": "Greens, electrolytes, and nootropics to boost energy and sharpen focus throughout the day.",
+        "layout": "row",
+        "max_products": 8,
+        "show_feature_card": false,
+        "anchor_id": "energy-focus",
         "color_scheme": "scheme-1",
         "section_width": "page-width",
         "padding-block-start": 24,
@@ -63,9 +163,12 @@
     }
   },
   "order": [
+    "plp-hero",
+    "tabs",
     "all-products",
     "gut-health",
     "recovery",
-    "immunity"
+    "immunity",
+    "energy-focus"
   ]
 }
