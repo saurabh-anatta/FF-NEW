@@ -1,0 +1,119 @@
+{% doc %}
+  PDP USP guarantee row block.
+  Renders checkmark icons with guarantee text.
+
+  @example {% content_for 'block', type: '_pdp-usp', id: 'usp' %}
+{% enddoc %}
+
+<div class="pdp-usp" {{ block.shopify_attributes }}>
+  {%- if block.settings.usp_1_text != blank -%}
+    <div class="pdp-usp__item">
+      <span class="pdp-usp__icon">{{ 'check.svg' | inline_asset_content }}</span>
+      <span class="pdp-usp__text">{{ block.settings.usp_1_text }}</span>
+    </div>
+  {%- endif -%}
+
+  {%- if block.settings.usp_2_text != blank -%}
+    <div class="pdp-usp__item">
+      <span class="pdp-usp__icon">{{ 'check.svg' | inline_asset_content }}</span>
+      <span class="pdp-usp__text">{{ block.settings.usp_2_text }}</span>
+    </div>
+  {%- endif -%}
+
+  {%- if block.settings.usp_3_text != blank -%}
+    <div class="pdp-usp__item">
+      <span class="pdp-usp__icon">{{ 'check.svg' | inline_asset_content }}</span>
+      <span class="pdp-usp__text">{{ block.settings.usp_3_text }}</span>
+    </div>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+.pdp-usp {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.pdp-usp__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pdp-usp__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pdp-usp__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.pdp-usp__text {
+  font-family: var(--font-body--family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  color: var(--color-foreground);
+}
+
+@media screen and (max-width: 749px) {
+  .pdp-usp {
+    gap: 12px;
+  }
+
+  .pdp-usp__item {
+    gap: 6px;
+  }
+
+  .pdp-usp__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .pdp-usp__text {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.pdp_usp",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "usp_1_text",
+      "label": "t:settings.usp_1_text",
+      "default": "30-day money-back guarantee"
+    },
+    {
+      "type": "text",
+      "id": "usp_2_text",
+      "label": "t:settings.usp_2_text",
+      "default": "Delay or cancel anytime"
+    },
+    {
+      "type": "text",
+      "id": "usp_3_text",
+      "label": "t:settings.usp_3_text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.pdp_usp",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

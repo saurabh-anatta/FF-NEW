@@ -452,7 +452,14 @@
     "collection_tabs": "Collection tabs",
     "plp_collection": "PLP collection",
     "comparison_table": "Comparison table",
-    "comparison_row": "Comparison row"
+    "comparison_row": "Comparison row",
+    "pdp_badges": "PDP Badges",
+    "pdp_rating": "PDP Rating",
+    "pdp_tags": "PDP Tags",
+    "pdp_variant_picker": "PDP Variant Picker",
+    "pdp_subscription": "PDP Subscription",
+    "pdp_usp": "PDP USP Row",
+    "pdp_upsells": "PDP Upsells"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -764,7 +771,9 @@
     "wide": "Wide",
     "youtube": "YouTube",
     "with_hints": "With hints",
-    "below_media": "Below media"
+    "below_media": "Below media",
+    "product_tags": "Product tags",
+    "manual_entry": "Manual entry"
   },
   "settings": {
     "accordion": "Accordion",
@@ -790,6 +799,15 @@
     "background_overlay": "Background overlay",
     "badge_corner_radius": "Corner radius",
     "badge_text": "Badge text",
+    "badge_1_text": "Badge 1 text",
+    "badge_1_bg_color": "Badge 1 background",
+    "badge_1_text_color": "Badge 1 text color",
+    "badge_2_text": "Badge 2 text",
+    "badge_2_bg_color": "Badge 2 background",
+    "badge_2_text_color": "Badge 2 text color",
+    "badge_3_text": "Badge 3 text",
+    "badge_3_bg_color": "Badge 3 background",
+    "badge_3_text_color": "Badge 3 text color",
     "background_media": "Background media",
     "badge_position": "Position on cards",
     // Color scheme setting for sale badges on product cards
@@ -1227,7 +1245,27 @@
     "feature_description": "Feature description",
     "feature_cta_text": "Feature CTA text",
     "feature_cta_link": "Feature CTA link",
-    "feature_card_position": "Feature card position"
+    "feature_card_position": "Feature card position",
+    "reviews_link": "Reviews link",
+    "show_rating_number": "Show rating number",
+    "tag_source": "Tag source",
+    "manual_tags": "Manual tags",
+    "max_tags": "Max tags",
+    "tag_bg_color": "Tag background",
+    "tag_text_color": "Tag text color",
+    "show_images": "Show images",
+    "show_price_per_unit": "Show price per unit",
+    "option_index": "Option index",
+    "benefit_1": "Benefit 1",
+    "benefit_2": "Benefit 2",
+    "benefit_3": "Benefit 3",
+    "usp_1_text": "USP 1 text",
+    "usp_2_text": "USP 2 text",
+    "usp_3_text": "USP 3 text",
+    "heading_text": "Heading",
+    "product_1": "Product 1",
+    "product_2": "Product 2",
+    "product_3": "Product 3"
   },
   "text_defaults": {
     "accordion_heading": "Accordion heading",

@@ -1,0 +1,251 @@
+{% doc %}
+  PDP Compact upsell product cards block.
+  Renders "You may also like" heading with horizontal product cards.
+
+  @example {% content_for 'block', type: '_pdp-upsells', id: 'upsells' %}
+{% enddoc %}
+
+{%- liquid
+  assign heading_text = block.settings.heading_text
+  assign product_1 = block.settings.product_1
+  assign product_2 = block.settings.product_2
+  assign product_3 = block.settings.product_3
+
+  assign has_products = false
+  if product_1 != blank or product_2 != blank or product_3 != blank
+    assign has_products = true
+  endif
+-%}
+
+{%- if has_products -%}
+  <div class="pdp-upsells" {{ block.shopify_attributes }}>
+    {%- if heading_text != blank -%}
+      <h3 class="pdp-upsells__heading">{{ heading_text }}</h3>
+    {%- endif -%}
+
+    <div class="pdp-upsells__list">
+      {%- if product_1 != blank -%}
+        {% render 'pdp-upsell-card', product: product_1 %}
+      {%- endif -%}
+      {%- if product_2 != blank -%}
+        {% render 'pdp-upsell-card', product: product_2 %}
+      {%- endif -%}
+      {%- if product_3 != blank -%}
+        {% render 'pdp-upsell-card', product: product_3 %}
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+.pdp-upsells {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pdp-upsells__heading {
+  font-family: var(--font-body--family);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-foreground);
+  margin: 0;
+}
+
+.pdp-upsells__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pdp-upsell-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #D0D0BC;
+  background: #FFFFFF;
+  padding-inline-end: 16px;
+  gap: 12px;
+}
+
+.pdp-upsell-card__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.pdp-upsell-card__image {
+  width: 88px;
+  height: 88px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-inline-end: 1px solid #D0D0BC;
+}
+
+.pdp-upsell-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pdp-upsell-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.pdp-upsell-card__title-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pdp-upsell-card__title {
+  font-family: var(--font-subheading--family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #141414;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pdp-upsell-card__rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.pdp-upsell-card__stars img {
+  width: 66px;
+  height: 10px;
+}
+
+.pdp-upsell-card__rating-num {
+  font-family: var(--font-body--family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  color: #4A4A41;
+}
+
+.pdp-upsell-card__price-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.pdp-upsell-card__price {
+  font-family: var(--font-subheading--family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #141414;
+}
+
+.pdp-upsell-card__compare-price {
+  font-family: var(--font-body--family);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  color: #80806F;
+  text-decoration: line-through;
+}
+
+.pdp-upsell-card__right {
+  flex-shrink: 0;
+}
+
+.pdp-upsell-card__add-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 32px;
+  border-radius: 24px;
+  background-color: #141414;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-subheading--family);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  text-align: center;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+.pdp-upsell-card__add-btn:hover {
+  background-color: #333333;
+}
+
+.pdp-upsell-card__add-btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 749px) {
+  .pdp-upsell-card__image {
+    width: 72px;
+    height: 72px;
+  }
+
+  .pdp-upsell-card__title {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .pdp-upsell-card__add-btn {
+    padding: 8px 20px;
+    font-size: 11px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.pdp_upsells",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "t:settings.heading_text",
+      "default": "You may also like"
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "t:settings.product_1"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "t:settings.product_2"
+    },
+    {
+      "type": "product",
+      "id": "product_3",
+      "label": "t:settings.product_3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.pdp_upsells",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,124 @@
+{% doc %}
+  PDP Tag/benefit pills row block.
+  Renders product tags or custom text as styled pills.
+
+  @example {% content_for 'block', type: '_pdp-tags', id: 'tags' %}
+{% enddoc %}
+
+{%- liquid
+  assign product_resource = closest.product
+  assign tag_source = block.settings.tag_source
+  assign max_tags = block.settings.max_tags | default: 5
+  assign tag_bg = block.settings.tag_bg_color
+  assign tag_color = block.settings.tag_text_color
+-%}
+
+<div
+  class="pdp-tags"
+  style="--pdp-tag-bg: {{ tag_bg }}; --pdp-tag-color: {{ tag_color }};"
+  {{ block.shopify_attributes }}
+>
+  {%- if tag_source == 'product_tags' -%}
+    {%- for tag in product_resource.tags limit: max_tags -%}
+      <span class="pdp-tag">{{ tag }}</span>
+    {%- endfor -%}
+  {%- else -%}
+    {%- assign manual_tags_str = block.settings.manual_tags -%}
+    {%- if manual_tags_str != blank -%}
+      {%- assign tags_array = manual_tags_str | split: ',' -%}
+      {%- for tag in tags_array limit: max_tags -%}
+        {%- assign trimmed_tag = tag | strip -%}
+        {%- if trimmed_tag != blank -%}
+          <span class="pdp-tag">{{ trimmed_tag }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+.pdp-tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.pdp-tag {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 6px;
+  background-color: var(--pdp-tag-bg, #F5FAF6);
+  color: var(--pdp-tag-color, #2A523F);
+  font-family: var(--font-subheading--family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 749px) {
+  .pdp-tag {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.pdp_tags",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "tag_source",
+      "label": "t:settings.tag_source",
+      "options": [
+        {
+          "value": "product_tags",
+          "label": "t:options.product_tags"
+        },
+        {
+          "value": "manual",
+          "label": "t:options.manual_entry"
+        }
+      ],
+      "default": "manual"
+    },
+    {
+      "type": "textarea",
+      "id": "manual_tags",
+      "label": "t:settings.manual_tags",
+      "default": "Fresh & Citrusy, Flavorful Nutrition, Energy + Immunity"
+    },
+    {
+      "type": "number",
+      "id": "max_tags",
+      "label": "t:settings.max_tags",
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "tag_bg_color",
+      "label": "t:settings.tag_bg_color",
+      "default": "#F5FAF6"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "t:settings.tag_text_color",
+      "default": "#2A523F"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.pdp_tags",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

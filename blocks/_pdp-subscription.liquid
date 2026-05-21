@@ -1,0 +1,418 @@
+{% doc %}
+  PDP Subscribe & Save / One-time toggle block.
+  Renders subscription selection cards with frequency options.
+
+  @example {% content_for 'block', type: '_pdp-subscription', id: 'subscription' %}
+{% enddoc %}
+
+{%- liquid
+  assign product_resource = closest.product
+  assign selling_plan_groups = product_resource.selling_plan_groups
+-%}
+
+{%- if selling_plan_groups.size > 0 -%}
+  {%- liquid
+    assign first_group = selling_plan_groups[0]
+    assign selling_plans = first_group.selling_plans
+    assign selected_variant = product_resource.selected_or_first_available_variant
+    assign first_plan = selling_plans[0]
+
+    assign subscribe_price = selected_variant.price
+    if first_plan.price_adjustments.size > 0
+      assign adjustment = first_plan.price_adjustments[0]
+      if adjustment.value_type == 'percentage'
+        assign discount_pct = adjustment.value
+        assign discount_multiplier = 100 | minus: discount_pct
+        assign subscribe_price = selected_variant.price | times: discount_multiplier | divided_by: 100
+      endif
+    endif
+
+    assign onetime_price = selected_variant.price
+    assign badge_text = block.settings.badge_text
+  -%}
+
+  <pdp-subscription-selector {{ block.shopify_attributes }}>
+    <div class="pdp-subscription__label">
+      <span class="pdp-subscription__label-text">Select Frequency:</span>
+    </div>
+
+    <div class="pdp-subscription__options">
+      {%- comment -%} Subscribe card {%- endcomment -%}
+      <div
+        class="pdp-subscription__card pdp-subscription__card--subscribe is-selected"
+        ref="subscribeCard"
+        on:click="/handleSubscribeSelect"
+        role="radio"
+        aria-checked="true"
+        tabindex="0"
+      >
+        {%- if badge_text != blank -%}
+          <div class="pdp-subscription__badge-bar">
+            <span class="pdp-subscription__badge-text">{{ badge_text }}</span>
+          </div>
+        {%- endif -%}
+
+        <div class="pdp-subscription__card-content" ref="subscribeDetails">
+          <div class="pdp-subscription__card-row">
+            <div class="pdp-subscription__card-left">
+              <div class="pdp-subscription__radio">
+                <div class="pdp-subscription__radio-dot"></div>
+              </div>
+              <div class="pdp-subscription__card-info">
+                <span class="pdp-subscription__card-heading">Subscribe & Save</span>
+                {%- if first_plan.price_adjustments.size > 0 -%}
+                  {%- assign adj = first_plan.price_adjustments[0] -%}
+                  {%- if adj.value_type == 'percentage' -%}
+                    <span class="pdp-subscription__savings">Save {{ adj.value }}%</span>
+                  {%- endif -%}
+                {%- endif -%}
+
+                <ul class="pdp-subscription__benefits">
+                  {%- if block.settings.benefit_1 != blank -%}
+                    <li class="pdp-subscription__benefit">
+                      {{ 'check.svg' | inline_asset_content }}
+                      <span>{{ block.settings.benefit_1 }}</span>
+                    </li>
+                  {%- endif -%}
+                  {%- if block.settings.benefit_2 != blank -%}
+                    <li class="pdp-subscription__benefit">
+                      {{ 'check.svg' | inline_asset_content }}
+                      <span>{{ block.settings.benefit_2 }}</span>
+                    </li>
+                  {%- endif -%}
+                  {%- if block.settings.benefit_3 != blank -%}
+                    <li class="pdp-subscription__benefit">
+                      {{ 'check.svg' | inline_asset_content }}
+                      <span>{{ block.settings.benefit_3 }}</span>
+                    </li>
+                  {%- endif -%}
+                </ul>
+
+                {%- if selling_plans.size > 1 -%}
+                  <div class="pdp-subscription__frequencies">
+                    <span class="pdp-subscription__freq-label">Delivery every:</span>
+                    <div class="pdp-subscription__freq-buttons">
+                      {%- for plan in selling_plans -%}
+                        <button
+                          type="button"
+                          class="pdp-subscription__freq-btn{% if forloop.first %} is-selected{% endif %}"
+                          data-frequency-btn
+                          data-plan-id="{{ plan.id }}"
+                          on:click="/handleFrequencySelect"
+                        >
+                          {{ plan.name }}
+                        </button>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+
+            <div class="pdp-subscription__card-price">
+              <span class="pdp-subscription__price">{{ subscribe_price | money }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} One-time card {%- endcomment -%}
+      <div
+        class="pdp-subscription__card pdp-subscription__card--onetime"
+        ref="onetimeCard"
+        on:click="/handleOnetimeSelect"
+        role="radio"
+        aria-checked="false"
+        tabindex="0"
+      >
+        <div class="pdp-subscription__card-content">
+          <div class="pdp-subscription__card-row">
+            <div class="pdp-subscription__card-left">
+              <div class="pdp-subscription__radio">
+                <div class="pdp-subscription__radio-dot"></div>
+              </div>
+              <div class="pdp-subscription__card-info">
+                <span class="pdp-subscription__card-heading">One-time Purchase</span>
+              </div>
+            </div>
+
+            <div class="pdp-subscription__card-price">
+              <span class="pdp-subscription__price">{{ onetime_price | money }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="application/json" data-selling-plans>
+      [
+        {%- for plan in selling_plans -%}
+          {
+            "id": {{ plan.id }},
+            "name": {{ plan.name | json }},
+            "price_adjustments": {{ plan.price_adjustments | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    </script>
+
+    <script type="module" src="{{ 'pdp-subscription-selector.js' | asset_url }}" defer></script>
+  </pdp-subscription-selector>
+{%- endif -%}
+
+{% stylesheet %}
+.pdp-subscription__label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-block-end: 8px;
+}
+
+.pdp-subscription__label-text {
+  font-family: var(--font-body--family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-foreground);
+}
+
+.pdp-subscription__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+}
+
+.pdp-subscription__card {
+  width: 100%;
+  border: 1px solid #D0D0BC;
+  cursor: pointer;
+  background: #FFFFFF;
+  transition: border-color 0.15s ease;
+}
+
+.pdp-subscription__card.is-selected {
+  border-color: #141414;
+}
+
+.pdp-subscription__badge-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 12px;
+  background-color: #E1F0E2;
+}
+
+.pdp-subscription__badge-text {
+  font-family: var(--font-subheading--family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #141414;
+  text-transform: uppercase;
+}
+
+.pdp-subscription__card-content {
+  padding: 12px;
+}
+
+.pdp-subscription__card-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.pdp-subscription__card-left {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.pdp-subscription__radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #D0D0BC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-block-start: 2px;
+  transition: border-color 0.15s ease;
+}
+
+.pdp-subscription__card.is-selected .pdp-subscription__radio {
+  border-color: #141414;
+}
+
+.pdp-subscription__radio-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.15s ease;
+}
+
+.pdp-subscription__card.is-selected .pdp-subscription__radio-dot {
+  background: #141414;
+}
+
+.pdp-subscription__card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pdp-subscription__card-heading {
+  font-family: var(--font-body--family);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #141414;
+}
+
+.pdp-subscription__savings {
+  font-family: var(--font-body--family);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #2A523F;
+}
+
+.pdp-subscription__benefits {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pdp-subscription__benefit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body--family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #4A4A41;
+}
+
+.pdp-subscription__benefit svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.pdp-subscription__frequencies {
+  margin-block-start: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pdp-subscription__freq-label {
+  font-family: var(--font-body--family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #4A4A41;
+}
+
+.pdp-subscription__freq-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pdp-subscription__freq-btn {
+  padding: 4px 12px;
+  border: 1px solid #D0D0BC;
+  border-radius: 24px;
+  background: transparent;
+  font-family: var(--font-body--family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #141414;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.pdp-subscription__freq-btn:hover {
+  border-color: #141414;
+}
+
+.pdp-subscription__freq-btn.is-selected {
+  background: #141414;
+  border-color: #141414;
+  color: #FFFFFF;
+}
+
+.pdp-subscription__card-price {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.pdp-subscription__price {
+  font-family: var(--font-subheading--family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #141414;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 749px) {
+  .pdp-subscription__card-content {
+    padding: 12px 8px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.pdp_subscription",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "t:settings.badge_text",
+      "default": "MOST POPULAR"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "t:settings.benefit_1",
+      "default": "Reschedule or cancel anytime"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "t:settings.benefit_2",
+      "default": "Free Shipping"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "t:settings.benefit_3",
+      "default": "Free Welcome Kit"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.pdp_subscription",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

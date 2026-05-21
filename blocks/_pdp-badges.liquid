@@ -1,0 +1,128 @@
+{% doc %}
+  PDP Badge pills row block.
+  Renders up to 3 configurable badge pills in a horizontal row.
+
+  @example {% content_for 'block', type: '_pdp-badges', id: 'badges' %}
+{% enddoc %}
+
+<div class="pdp-badges" {{ block.shopify_attributes }}>
+  {%- if block.settings.badge_1_text != blank -%}
+    <span
+      class="pdp-badge"
+      style="background-color: {{ block.settings.badge_1_bg_color }}; color: {{ block.settings.badge_1_text_color }};"
+    >
+      {{- block.settings.badge_1_text -}}
+    </span>
+  {%- endif -%}
+
+  {%- if block.settings.badge_2_text != blank -%}
+    <span
+      class="pdp-badge"
+      style="background-color: {{ block.settings.badge_2_bg_color }}; color: {{ block.settings.badge_2_text_color }};"
+    >
+      {{- block.settings.badge_2_text -}}
+    </span>
+  {%- endif -%}
+
+  {%- if block.settings.badge_3_text != blank -%}
+    <span
+      class="pdp-badge"
+      style="background-color: {{ block.settings.badge_3_bg_color }}; color: {{ block.settings.badge_3_text_color }};"
+    >
+      {{- block.settings.badge_3_text -}}
+    </span>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+.pdp-badges {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.pdp-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-family: var(--font-subheading--family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: 0;
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.pdp_badges",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_text",
+      "label": "t:settings.badge_1_text"
+    },
+    {
+      "type": "color",
+      "id": "badge_1_bg_color",
+      "label": "t:settings.badge_1_bg_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "badge_1_text_color",
+      "label": "t:settings.badge_1_text_color",
+      "default": "#141414"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_text",
+      "label": "t:settings.badge_2_text"
+    },
+    {
+      "type": "color",
+      "id": "badge_2_bg_color",
+      "label": "t:settings.badge_2_bg_color",
+      "default": "#EC0606"
+    },
+    {
+      "type": "color",
+      "id": "badge_2_text_color",
+      "label": "t:settings.badge_2_text_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_text",
+      "label": "t:settings.badge_3_text"
+    },
+    {
+      "type": "color",
+      "id": "badge_3_bg_color",
+      "label": "t:settings.badge_3_bg_color",
+      "default": "#141414"
+    },
+    {
+      "type": "color",
+      "id": "badge_3_text_color",
+      "label": "t:settings.badge_3_text_color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.pdp_badges",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

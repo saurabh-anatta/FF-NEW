@@ -1,0 +1,87 @@
+{% doc %}
+  PDP Upsell Card
+
+  Renders a compact horizontal product card for upsells.
+
+  @param {Object} product - Product object (required)
+
+  @example
+  {% render 'pdp-upsell-card', product: product %}
+{% enddoc %}
+
+{%- liquid
+  assign product = product | default: empty
+  unless product != empty
+    break
+  endunless
+
+  assign variant = product.selected_or_first_available_variant | default: product.first_available_variant
+  assign rating_value = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count.value
+-%}
+
+<div class="pdp-upsell-card">
+  <div class="pdp-upsell-card__left">
+    {%- if product.featured_image -%}
+      <a href="{{ product.url }}" class="pdp-upsell-card__image" aria-label="{{ product.title }}">
+        <img
+          src="{{ product.featured_image | image_url: width: 176 }}"
+          alt="{{ product.featured_image.alt | escape }}"
+          loading="lazy"
+          width="88"
+          height="88"
+        >
+      </a>
+    {%- endif -%}
+
+    <div class="pdp-upsell-card__info">
+      <div class="pdp-upsell-card__title-row">
+        <a href="{{ product.url }}" class="pdp-upsell-card__title">{{ product.title }}</a>
+        <div class="pdp-upsell-card__rating">
+          <span class="pdp-upsell-card__stars">
+            <img src="{{ 'stars.svg' | asset_url }}" alt="Rating" width="66" height="10" loading="lazy">
+          </span>
+          {%- if rating_value != blank -%}
+            <span class="pdp-upsell-card__rating-num">{{ rating_value }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="pdp-upsell-card__price-row">
+        <span class="pdp-upsell-card__price">{{ variant.price | money }}</span>
+        {%- if variant.compare_at_price > variant.price -%}
+          <span class="pdp-upsell-card__compare-price">{{ variant.compare_at_price | money }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="pdp-upsell-card__right">
+    <button
+      type="button"
+      class="pdp-upsell-card__add-btn"
+      data-variant-id="{{ variant.id }}"
+      {% unless variant.available %}disabled{% endunless %}
+      onclick="(function(btn){
+        if(btn.disabled) return;
+        btn.disabled = true;
+        btn.textContent = '...';
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({items: [{id: btn.dataset.variantId, quantity: 1}]})
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(){
+          btn.textContent = 'ADDED';
+          setTimeout(function(){ btn.textContent = 'ADD'; btn.disabled = false; }, 2000);
+        })
+        .catch(function(){
+          btn.textContent = 'ADD';
+          btn.disabled = false;
+        });
+      })(this)"
+    >
+      ADD
+    </button>
+  </div>
+</div>

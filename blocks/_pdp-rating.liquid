@@ -1,0 +1,140 @@
+{% doc %}
+  PDP Star rating + review count block.
+  Renders star rating image, rating number, and review count link.
+
+  @example {% content_for 'block', type: '_pdp-rating', id: 'rating' %}
+{% enddoc %}
+
+{%- liquid
+  assign product_resource = closest.product
+  assign rating_value = product_resource.metafields.reviews.rating.value
+  assign rating_count = product_resource.metafields.reviews.rating_count.value
+  assign show_rating_number = block.settings.show_rating_number
+-%}
+
+<div class="pdp-rating" {{ block.shopify_attributes }}>
+  <div class="pdp-rating__stars">
+    <img
+      src="{{ 'stars-2.svg' | asset_url }}"
+      alt="Product rating"
+      width="96"
+      height="16"
+      loading="lazy"
+    >
+  </div>
+
+  {%- if show_rating_number -%}
+    <div class="pdp-rating__info">
+      {%- if rating_value != blank -%}
+        <span class="pdp-rating__number">{{ rating_value }}</span>
+      {%- else -%}
+        <span class="pdp-rating__number">4.9</span>
+      {%- endif -%}
+
+      {%- if block.settings.reviews_link != blank -%}
+        <a href="{{ block.settings.reviews_link }}" class="pdp-rating__count">
+          {%- if rating_count != blank -%}
+            ({{ rating_count }} Reviews)
+          {%- else -%}
+            (51 Reviews)
+          {%- endif -%}
+        </a>
+      {%- else -%}
+        <span class="pdp-rating__count">
+          {%- if rating_count != blank -%}
+            ({{ rating_count }} Reviews)
+          {%- else -%}
+            (51 Reviews)
+          {%- endif -%}
+        </span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+.pdp-rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.pdp-rating__stars {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pdp-rating__stars img {
+  width: 96px;
+  height: 16px;
+}
+
+.pdp-rating__info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.pdp-rating__number {
+  font-family: var(--font-body--family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-foreground);
+}
+
+.pdp-rating__count {
+  font-family: var(--font-body--family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-foreground);
+  text-decoration: underline;
+}
+
+a.pdp-rating__count {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 749px) {
+  .pdp-rating__stars img {
+    width: 66px;
+    height: 10px;
+  }
+
+  .pdp-rating__number,
+  .pdp-rating__count {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.pdp_rating",
+  "tag": null,
+  "settings": [
+    {
+      "type": "url",
+      "id": "reviews_link",
+      "label": "t:settings.reviews_link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating_number",
+      "label": "t:settings.show_rating_number",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.pdp_rating",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}
