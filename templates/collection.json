@@ -1,14 +1,4 @@
 {
-  "sections": {
-    "header-group": {
-      "type": "header-group"
-    },
-    "footer-group": {
-      "type": "footer-group"
-    }
-  },
-  "order": [
-    "header-group",
-    "footer-group"
-  ]
+  "sections": {},
+  "order": []
 }
