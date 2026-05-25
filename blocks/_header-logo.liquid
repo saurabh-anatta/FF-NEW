@@ -49,34 +49,38 @@
     assign inverse_logo_style = '--header-logo-image-width: ' | append: inverse_logo_width | append: 'px;' | append: '--header-logo-image-width-mobile: ' | append: inverse_logo_width_mobile | append: 'px; --header-logo-image-height: ' | append: settings.logo_height | append: 'px; --header-logo-image-height-mobile: ' | append: settings.logo_height_mobile | append: 'px;'
   %}
 
-  <span
-    class="header-logo__image-container header-logo__image-container--original"
-    data-testid="header-logo"
-  >
-    {% render 'image',
-      image: settings.logo,
-      class: 'header-logo__image',
-      height: settings.logo_height,
-      alt_text_fallback: alt_text_fallback,
-      text_fallback: shop.name,
-      style: logo_style
-    %}
-  </span>
-
-  {% if use_inverse_logo %}
+  {% if settings.logo %}
     <span
-      class="header-logo__image-container header-logo__image-container--inverse"
-      data-testid="header-logo-inverse"
+      class="header-logo__image-container header-logo__image-container--original"
+      data-testid="header-logo"
     >
       {% render 'image',
-        image: inverse_logo,
+        image: settings.logo,
         class: 'header-logo__image',
         height: settings.logo_height,
         alt_text_fallback: alt_text_fallback,
         text_fallback: shop.name,
-        style: inverse_logo_style
+        style: logo_style
       %}
     </span>
+
+    {% if use_inverse_logo %}
+      <span
+        class="header-logo__image-container header-logo__image-container--inverse"
+        data-testid="header-logo-inverse"
+      >
+        {% render 'image',
+          image: inverse_logo,
+          class: 'header-logo__image',
+          height: settings.logo_height,
+          alt_text_fallback: alt_text_fallback,
+          text_fallback: shop.name,
+          style: inverse_logo_style
+        %}
+      </span>
+    {% endif %}
+  {% else %}
+    {% render 'brand-logo', class: 'header-logo__brand-svg' %}
   {% endif %}
 </a>
 
@@ -135,6 +139,22 @@
 
   .header-logo__image-container--inverse {
     display: var(--header-logo-inverse-display, none);
+  }
+
+  .header-logo__brand-svg {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-logo__brand-svg svg {
+    height: var(--header-logo-image-height-mobile);
+    width: auto;
+  }
+
+  @media screen and (min-width: 750px) {
+    .header-logo__brand-svg svg {
+      height: var(--header-logo-image-height, 32px);
+    }
   }
 {% endstylesheet %}
 

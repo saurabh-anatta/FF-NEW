@@ -1,0 +1,26 @@
+{% doc %}
+  Brand Logo
+
+  Renders the FactorForm brand logo inline from assets.
+  SVG paths inherit currentColor so the logo matches the section's foreground color.
+
+  @param {string} [class] - Optional CSS class
+  @param {string} [style] - Optional inline style
+{% enddoc %}
+
+{% liquid
+  assign class = class | default: ''
+  assign style = style | default: ''
+%}
+
+<span class="brand-logo {{ class }}" {% if style != blank %}style="{{ style }}"{% endif %}>
+  {{ 'factorform-logo-primary-black-1.svg' | inline_asset_content }}
+</span>
+
+<style>
+  .brand-logo svg,
+  .brand-logo svg path,
+  .brand-logo svg g {
+    fill: currentColor;
+  }
+</style>

@@ -62,7 +62,7 @@
       {{ logo_image }}
     </div>
   {% else %}
-    {% render 'jumbo-text', text: shop.name %}
+    {% render 'brand-logo', class: 'logo-block__brand-svg' %}
   {% endif %}
 </div>
 
@@ -95,6 +95,22 @@
   .logo-block__image {
     object-fit: contain;
     width: 100%;
+  }
+
+  .logo-block__brand-svg {
+    display: flex;
+    width: var(--logo-width);
+  }
+
+  .logo-block__brand-svg svg {
+    width: 100%;
+    height: auto;
+  }
+
+  @media screen and (max-width: 749px) {
+    .logo-block__brand-svg {
+      width: var(--logo-width-mobile, var(--logo-width));
+    }
   }
 {% endstylesheet %}
 

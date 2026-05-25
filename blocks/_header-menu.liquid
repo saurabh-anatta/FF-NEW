@@ -313,6 +313,13 @@
   .menu-list__link-title {
     padding-inline: calc(var(--gap-xl) / 2);
   }
+
+  @media screen and (min-width: 750px) {
+    .menu-list:not(.menu-list--mobile) .menu-list__link-title {
+      padding-inline: 22px;
+    }
+  }
+
   [slot='overflow'] .menu-list__link-title {
     padding-inline: 0;
   }
