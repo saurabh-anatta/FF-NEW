@@ -1,0 +1,226 @@
+{% liquid
+  assign heading_text = section.settings.heading
+  if heading_text == blank
+    assign heading_text = collection.title
+  endif
+%}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+
+<div
+  class="collection-banner spacing-style section section--full-width color-{{ section.settings.color_scheme }}"
+  style="
+    {% render 'spacing-style', settings: section.settings %}
+    --collection-banner-min-height: {{ section.settings.min_height }}px;
+    --collection-banner-heading-size: {{ section.settings.heading_font_size }}px;
+  "
+>
+  <div class="collection-banner__media">
+    {% if section.settings.image != blank %}
+      {%- assign sizes_val = '100vw' -%}
+      {{
+        section.settings.image
+        | image_url: width: section.settings.image.width
+        | image_tag:
+          class: 'collection-banner__image',
+          sizes: sizes_val,
+          widths: '375,550,750,1100,1500,1780,2000',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: section.settings.image.alt
+      }}
+    {% endif %}
+  </div>
+
+  {% if section.settings.toggle_overlay %}
+    {% render 'overlay', settings: section.settings %}
+  {% endif %}
+
+  <div class="collection-banner__content">
+    <h1 class="collection-banner__heading">{{ heading_text | escape }}</h1>
+  </div>
+</div>
+
+{% stylesheet %}
+  .collection-banner {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: var(--collection-banner-min-height, 219px);
+  }
+
+  .collection-banner__media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
+  .collection-banner__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .collection-banner__content {
+    position: relative;
+    z-index: 1;
+    padding-inline: 64px;
+  }
+
+  .collection-banner__heading {
+    font-family: var(--font-body--family);
+    font-weight: 300;
+    font-size: var(--collection-banner-heading-size, 48px);
+    line-height: 1.17;
+    color: var(--color-foreground);
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-banner {
+      --collection-banner-min-height: 160px;
+    }
+
+    .collection-banner__content {
+      padding-inline: 24px;
+    }
+
+    .collection-banner__heading {
+      font-size: 28px;
+      line-height: 1.29;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Leave blank to use the collection title."
+    },
+    {
+      "type": "number",
+      "id": "heading_font_size",
+      "label": "Heading font size",
+      "default": 48
+    },
+    {
+      "type": "number",
+      "id": "min_height",
+      "label": "Minimum height",
+      "default": 219
+    },
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "toggle_overlay",
+      "label": "Enable overlay",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "alpha": true,
+      "default": "#00000066",
+      "visible_if": "{{ section.settings.toggle_overlay }}"
+    },
+    {
+      "type": "select",
+      "id": "overlay_style",
+      "label": "Overlay style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "gradient",
+          "label": "Gradient"
+        }
+      ],
+      "default": "gradient",
+      "visible_if": "{{ section.settings.toggle_overlay }}"
+    },
+    {
+      "type": "select",
+      "id": "gradient_direction",
+      "label": "Gradient direction",
+      "options": [
+        {
+          "value": "to top",
+          "label": "Up"
+        },
+        {
+          "value": "to bottom",
+          "label": "Down"
+        },
+        {
+          "value": "to right",
+          "label": "Right"
+        },
+        {
+          "value": "to left",
+          "label": "Left"
+        }
+      ],
+      "default": "to right",
+      "visible_if": "{{ section.settings.toggle_overlay and section.settings.overlay_style == 'gradient' }}"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-5"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection banner"
+    }
+  ]
+}
+{% endschema %}
