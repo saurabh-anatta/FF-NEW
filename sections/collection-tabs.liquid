@@ -1,0 +1,296 @@
+<nav
+  class="collection-tabs section-background color-{{ section.settings.color_scheme }}"
+  style="
+    --collection-tabs-padding-top: {{ section.settings.padding-block-start }}px;
+    --collection-tabs-padding-bottom: {{ section.settings.padding-block-end }}px;
+  "
+>
+  <collection-tabs
+    class="collection-tabs__inner color-{{ section.settings.color_scheme }}"
+  >
+    {% for block in section.blocks %}
+      <button
+        class="collection-tabs__tab{% if forloop.first %} collection-tabs__tab--active{% endif %}"
+        data-tab="{{ block.id }}"
+        data-target="{{ block.settings.target_section_id }}"
+        type="button"
+        {{ block.shopify_attributes }}
+      >
+        {{ block.settings.tab_label | escape }}
+      </button>
+    {% endfor %}
+  </collection-tabs>
+</nav>
+
+<script>
+  class CollectionTabs extends HTMLElement {
+    connectedCallback() {
+      this.tabs = this.querySelectorAll('[data-tab]');
+      this.activeClass = 'collection-tabs__tab--active';
+      this.sections = [];
+      this.observer = null;
+      this.isScrolling = false;
+      this.scrollTimeout = null;
+
+      for (const tab of this.tabs) {
+        tab.addEventListener('click', (e) => this.handleTabClick(e));
+      }
+
+      this.initObserver();
+    }
+
+    disconnectedCallback() {
+      if (this.observer) {
+        this.observer.disconnect();
+      }
+
+      if (this.scrollTimeout) {
+        clearTimeout(this.scrollTimeout);
+      }
+    }
+
+    getStickyOffset() {
+      const headerHeight = parseInt(
+        getComputedStyle(document.documentElement).getPropertyValue('--header-height') || '0',
+        10
+      );
+      const tabHeight = this.closest('.collection-tabs')?.offsetHeight || 0;
+      return headerHeight + tabHeight;
+    }
+
+    handleTabClick(event) {
+      event.preventDefault();
+      const button = event.currentTarget;
+      const targetId = button.dataset.target;
+
+      if (!targetId) return;
+
+      const targetSection = document.getElementById('shopify-section-' + targetId);
+
+      if (!targetSection) return;
+
+      this.setActiveTab(button);
+      this.isScrolling = true;
+
+      const offset = this.getStickyOffset();
+      const targetTop = targetSection.getBoundingClientRect().top + window.scrollY - offset;
+
+      window.scrollTo({
+        top: targetTop,
+        behavior: 'smooth'
+      });
+
+      if (this.scrollTimeout) {
+        clearTimeout(this.scrollTimeout);
+      }
+
+      this.scrollTimeout = setTimeout(() => {
+        this.isScrolling = false;
+      }, 1000);
+    }
+
+    setActiveTab(activeButton) {
+      for (const tab of this.tabs) {
+        tab.classList.remove(this.activeClass);
+      }
+      activeButton.classList.add(this.activeClass);
+
+      activeButton.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+
+    initObserver() {
+      const sectionTargets = [];
+
+      for (const tab of this.tabs) {
+        const targetId = tab.dataset.target;
+
+        if (!targetId) continue;
+
+        const section = document.getElementById('shopify-section-' + targetId);
+
+        if (section) {
+          sectionTargets.push({ section, tab });
+        }
+      }
+
+      if (sectionTargets.length === 0) return;
+
+      this.sections = sectionTargets;
+
+      const tabBarHeight = this.closest('.collection-tabs')?.offsetHeight || 0;
+      const headerHeight = parseInt(
+        getComputedStyle(document.documentElement).getPropertyValue('--header-height') || '0',
+        10
+      );
+      const topOffset = headerHeight + tabBarHeight;
+
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          if (this.isScrolling) return;
+
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              const match = this.sections.find((s) => s.section === entry.target);
+
+              if (match) {
+                this.setActiveTab(match.tab);
+              }
+            }
+          }
+        },
+        {
+          rootMargin: `-${topOffset}px 0px -50% 0px`,
+          threshold: 0
+        }
+      );
+
+      for (const { section } of this.sections) {
+        this.observer.observe(section);
+      }
+    }
+  }
+
+  if (!customElements.get('collection-tabs')) {
+    customElements.define('collection-tabs', CollectionTabs);
+  }
+</script>
+
+{% stylesheet %}
+  .collection-tabs {
+    position: sticky;
+    top: var(--header-height, 0px);
+    z-index: 3;
+    padding-block-start: var(--collection-tabs-padding-top, 24px);
+    padding-block-end: var(--collection-tabs-padding-bottom, 24px);
+  }
+
+  collection-tabs {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-inline: 64px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media screen and (max-width: 749px) {
+      padding-inline: 16px;
+    }
+  }
+
+  .collection-tabs__tab {
+    border-radius: 24px;
+    padding: 2px 24px 4px 24px;
+    border: 1px solid var(--color-foreground);
+    background: transparent;
+    color: var(--color-foreground);
+    font-family: var(--font-body--family);
+    font-size: 16px;
+    line-height: 24px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background: rgb(var(--color-foreground-rgb) / 0.1);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-foreground);
+      outline-offset: 2px;
+    }
+  }
+
+  .collection-tabs__tab--active {
+    background: var(--color-foreground);
+    color: var(--color-background);
+    border-color: var(--color-foreground);
+
+    &:hover {
+      background: var(--color-foreground);
+      color: var(--color-background);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection tabs",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Label",
+          "default": "Tab"
+        },
+        {
+          "type": "text",
+          "id": "target_section_id",
+          "label": "Target section ID",
+          "info": "Enter the section key from the template JSON that this tab should scroll to (e.g. 'all-products')."
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-5"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection tabs",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "tab_label": "All Products",
+            "target_section_id": "all-products"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
