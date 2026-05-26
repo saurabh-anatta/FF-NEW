@@ -8,6 +8,16 @@
  * ------------------------------------------------------------
  */
  {
-  "sections": {},
-  "order": []
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "layout_type": "grid",
+        "products_per_page": 24,
+        "padding-block-start": 36,
+        "padding-block-end": 36
+      }
+    }
+  },
+  "order": ["main"]
 }
