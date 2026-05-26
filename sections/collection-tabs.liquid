@@ -166,6 +166,11 @@
     z-index: 3;
     padding-block-start: var(--collection-tabs-padding-top, 24px);
     padding-block-end: var(--collection-tabs-padding-bottom, 24px);
+
+    @media screen and (max-width: 749px) {
+      padding-block-start: 12px;
+      padding-block-end: 12px;
+    }
   }
 
   collection-tabs {
@@ -184,6 +189,7 @@
 
     @media screen and (max-width: 749px) {
       padding-inline: 16px;
+      gap: 12px;
     }
   }
 
@@ -207,6 +213,12 @@
     &:focus-visible {
       outline: 2px solid var(--color-foreground);
       outline-offset: 2px;
+    }
+
+    @media screen and (max-width: 749px) {
+      padding: 2px 12px 4px 12px;
+      font-size: 14px;
+      line-height: 20px;
     }
   }
 
