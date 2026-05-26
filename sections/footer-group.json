@@ -230,7 +230,8 @@
       },
       "block_order": [
         "social_icons",
-        "policy_list"
+        "policy_list",
+        "copyright"
       ]
     }
   },

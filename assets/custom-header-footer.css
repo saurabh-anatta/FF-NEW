@@ -115,3 +115,15 @@
     gap: 16px;
   }
 }
+
+/* --------------------------------------------------------------------------
+   12. Footer: Email signup input pill shape (scoped to footer only,
+       avoids global inputs_border_radius override)
+   -------------------------------------------------------------------------- */
+.footer-content .email-signup__input-group {
+  border-radius: 32px;
+}
+
+.footer-content .email-signup__input-group input {
+  border-radius: 32px;
+}
