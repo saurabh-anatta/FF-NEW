@@ -1,12 +1,16 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "tabs": {
       "type": "collection-tabs",
-      "settings": {
-        "color_scheme": "scheme-5",
-        "padding-block-start": 24,
-        "padding-block-end": 24
-      },
       "blocks": {
         "tab-all": {
           "type": "tab",
@@ -44,28 +48,21 @@
           }
         }
       },
-      "block_order": ["tab-all", "tab-gut", "tab-recovery", "tab-immunity", "tab-energy"]
+      "block_order": [
+        "tab-all",
+        "tab-gut",
+        "tab-recovery",
+        "tab-immunity",
+        "tab-energy"
+      ],
+      "settings": {
+        "color_scheme": "scheme-5",
+        "padding-block-start": 24,
+        "padding-block-end": 24
+      }
     },
     "all-products": {
       "type": "product-list",
-      "settings": {
-        "collection": "",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 8,
-        "columns": 4,
-        "mobile_columns": "2",
-        "columns_gap": 12,
-        "rows_gap": 12,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 16,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 32,
-        "padding-block-end": 32
-      },
       "blocks": {
         "static-header": {
           "type": "_product-list-content",
@@ -104,6 +101,9 @@
               "type": "_product-list-text",
               "settings": {
                 "text": "<h3>{{ closest.collection.title }}</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -111,9 +111,6 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -124,6 +121,9 @@
               "type": "text",
               "settings": {
                 "text": "<p>Performance-focused nutrition essentials, made to help you feel better, move better, and live better.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "paragraph",
                 "font": "var(--font-body--family)",
                 "font_size": "0.875rem",
@@ -131,9 +131,6 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -141,7 +138,10 @@
               }
             }
           },
-          "block_order": ["title", "description"]
+          "block_order": [
+            "title",
+            "description"
+          ]
         },
         "static-product-card": {
           "type": "_product-card",
@@ -219,13 +219,13 @@
               }
             }
           },
-          "block_order": ["product-card-gallery", "product_title", "price"]
+          "block_order": [
+            "product-card-gallery",
+            "product_title",
+            "price"
+          ]
         }
       },
-      "block_order": []
-    },
-    "gut-health": {
-      "type": "product-list",
       "settings": {
         "collection": "",
         "layout_type": "grid",
@@ -243,7 +243,10 @@
         "color_scheme": "scheme-1",
         "padding-block-start": 32,
         "padding-block-end": 32
-      },
+      }
+    },
+    "gut-health": {
+      "type": "product-list",
       "blocks": {
         "static-header": {
           "type": "_product-list-content",
@@ -282,6 +285,9 @@
               "type": "_product-list-text",
               "settings": {
                 "text": "<h3>{{ closest.collection.title }}</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -289,9 +295,6 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -302,6 +305,9 @@
               "type": "text",
               "settings": {
                 "text": "<p>Targeted blends to support digestive wellness and a healthier microbiome.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "paragraph",
                 "font": "var(--font-body--family)",
                 "font_size": "0.875rem",
@@ -309,9 +315,6 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -319,7 +322,10 @@
               }
             }
           },
-          "block_order": ["title", "description"]
+          "block_order": [
+            "title",
+            "description"
+          ]
         },
         "static-product-card": {
           "type": "_product-card",
@@ -397,13 +403,13 @@
               }
             }
           },
-          "block_order": ["product-card-gallery", "product_title", "price"]
+          "block_order": [
+            "product-card-gallery",
+            "product_title",
+            "price"
+          ]
         }
       },
-      "block_order": []
-    },
-    "recovery": {
-      "type": "product-list",
       "settings": {
         "collection": "",
         "layout_type": "grid",
@@ -421,7 +427,10 @@
         "color_scheme": "scheme-1",
         "padding-block-start": 32,
         "padding-block-end": 32
-      },
+      }
+    },
+    "recovery": {
+      "type": "product-list",
       "blocks": {
         "static-header": {
           "type": "_product-list-content",
@@ -460,6 +469,9 @@
               "type": "_product-list-text",
               "settings": {
                 "text": "<h3>{{ closest.collection.title }}</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -467,9 +479,6 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -480,6 +489,9 @@
               "type": "text",
               "settings": {
                 "text": "<p>Repair, rebuild, and recover faster with science-backed formulas.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "paragraph",
                 "font": "var(--font-body--family)",
                 "font_size": "0.875rem",
@@ -487,9 +499,6 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -497,7 +506,10 @@
               }
             }
           },
-          "block_order": ["title", "description"]
+          "block_order": [
+            "title",
+            "description"
+          ]
         },
         "static-product-card": {
           "type": "_product-card",
@@ -575,13 +587,13 @@
               }
             }
           },
-          "block_order": ["product-card-gallery", "product_title", "price"]
+          "block_order": [
+            "product-card-gallery",
+            "product_title",
+            "price"
+          ]
         }
       },
-      "block_order": []
-    },
-    "immunity": {
-      "type": "product-list",
       "settings": {
         "collection": "",
         "layout_type": "grid",
@@ -599,7 +611,10 @@
         "color_scheme": "scheme-1",
         "padding-block-start": 32,
         "padding-block-end": 32
-      },
+      }
+    },
+    "immunity": {
+      "type": "product-list",
       "blocks": {
         "static-header": {
           "type": "_product-list-content",
@@ -638,6 +653,9 @@
               "type": "_product-list-text",
               "settings": {
                 "text": "<h3>{{ closest.collection.title }}</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -645,9 +663,6 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -658,6 +673,9 @@
               "type": "text",
               "settings": {
                 "text": "<p>Strengthen your body's natural defenses with daily immune support.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "paragraph",
                 "font": "var(--font-body--family)",
                 "font_size": "0.875rem",
@@ -665,9 +683,6 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -675,7 +690,10 @@
               }
             }
           },
-          "block_order": ["title", "description"]
+          "block_order": [
+            "title",
+            "description"
+          ]
         },
         "static-product-card": {
           "type": "_product-card",
@@ -753,13 +771,13 @@
               }
             }
           },
-          "block_order": ["product-card-gallery", "product_title", "price"]
+          "block_order": [
+            "product-card-gallery",
+            "product_title",
+            "price"
+          ]
         }
       },
-      "block_order": []
-    },
-    "energy-focus": {
-      "type": "product-list",
       "settings": {
         "collection": "",
         "layout_type": "grid",
@@ -777,7 +795,10 @@
         "color_scheme": "scheme-1",
         "padding-block-start": 32,
         "padding-block-end": 32
-      },
+      }
+    },
+    "energy-focus": {
+      "type": "product-list",
       "blocks": {
         "static-header": {
           "type": "_product-list-content",
@@ -816,6 +837,9 @@
               "type": "_product-list-text",
               "settings": {
                 "text": "<h3>{{ closest.collection.title }}</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -823,9 +847,6 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -836,6 +857,9 @@
               "type": "text",
               "settings": {
                 "text": "<p>Sharpen your mind and sustain your energy with clean, focused nutrition.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "paragraph",
                 "font": "var(--font-body--family)",
                 "font_size": "0.875rem",
@@ -843,9 +867,6 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -853,7 +874,10 @@
               }
             }
           },
-          "block_order": ["title", "description"]
+          "block_order": [
+            "title",
+            "description"
+          ]
         },
         "static-product-card": {
           "type": "_product-card",
@@ -931,11 +955,39 @@
               }
             }
           },
-          "block_order": ["product-card-gallery", "product_title", "price"]
+          "block_order": [
+            "product-card-gallery",
+            "product_title",
+            "price"
+          ]
         }
       },
-      "block_order": []
+      "settings": {
+        "collection": "",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 8,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 12,
+        "rows_gap": 12,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 16,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 32,
+        "padding-block-end": 32
+      }
     }
   },
-  "order": ["tabs", "all-products", "gut-health", "recovery", "immunity", "energy-focus"]
+  "order": [
+    "tabs",
+    "all-products",
+    "gut-health",
+    "recovery",
+    "immunity",
+    "energy-focus"
+  ]
 }
