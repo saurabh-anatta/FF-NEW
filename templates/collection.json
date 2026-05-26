@@ -9,6 +9,17 @@
  */
  {
   "sections": {
+    "collection-banner": {
+      "type": "collection-banner",
+      "settings": {
+        "image": "shopify://shop_images/image-desktop-90581549.jpg",
+        "heading": "Pure supplements & v",
+        "overlay_opacity": 40,
+        "color_scheme": "scheme-5",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
     "main": {
       "type": "main-collection",
       "settings": {
@@ -19,5 +30,5 @@
       }
     }
   },
-  "order": ["main"]
+  "order": ["collection-banner", "main"]
 }
