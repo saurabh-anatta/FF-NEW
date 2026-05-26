@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Custom Header & Footer CSS Overrides
+   Adjusts Horizon theme defaults to match Figma design specifications.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Header: Nav menu link gap (Figma 44px vs theme ~20px default)
+   -------------------------------------------------------------------------- */
+.header-menu .menu-list {
+  --menu-horizontal-gap: 44px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Header: Actions gap (Figma 32px vs theme ~20px default)
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 750px) {
+  .header header-actions {
+    gap: 32px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Announcement bar: Compact height (Figma 32px total, ~6px block padding)
+   -------------------------------------------------------------------------- */
+.header-announcements {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@media screen and (max-width: 749px) {
+  .header-announcements {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Footer: Policy links underline + color
+   -------------------------------------------------------------------------- */
+.footer-utilities a {
+  text-decoration: underline;
+  color: #F1F1EA;
+}
+
+.footer-utilities a:hover {
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   5. Footer: Social icons gap (Figma 16px vs theme --gap-sm ~11px)
+   -------------------------------------------------------------------------- */
+.footer-utilities .social-icons__wrapper {
+  gap: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Footer: Menu heading typography
+   -------------------------------------------------------------------------- */
+.footer-content .menu__heading__default {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 749px) {
+  .footer-content .menu__heading__default {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Footer: Menu item spacing (Figma 12px desktop, 8px mobile)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 749px) {
+  .footer-content .menu__item + .menu__item {
+    margin-block-start: 8px;
+  }
+
+  .footer-content .menu:not(:has(.menu__heading--empty)) .details-content {
+    margin-block-start: 8px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. Footer: Newsletter heading (Figma 32px desktop / 24px mobile, weight 300)
+   -------------------------------------------------------------------------- */
+.footer-content .email-signup__heading {
+  font-weight: 300;
+}
+
+/* --------------------------------------------------------------------------
+   9. Footer: Logo block sizing (Figma 448px desktop max-width)
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 750px) {
+  .footer-content .logo-block {
+    max-width: 448px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. Footer: Policy links font size (Figma 12px)
+   -------------------------------------------------------------------------- */
+.footer-utilities .policy-list a {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   11. Footer: Policy links wrap on mobile (Figma shows wrap)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 749px) {
+  .footer-utilities .policy-list {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}

@@ -16,7 +16,7 @@
       "blocks": {
         "group_wErUQf": {
           "type": "group",
-          "name": "Join our email list",
+          "name": "Newsletter",
           "settings": {
             "link": "",
             "open_in_new_tab": false,
@@ -27,7 +27,7 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
+            "gap": 16,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -58,7 +58,7 @@
               "type": "text",
               "name": "Heading",
               "settings": {
-                "text": "<h2>Join our email list</h2>",
+                "text": "<h2>Subscribe to our Newsletter</h2>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -84,7 +84,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>Get exclusive deals and early access to new products.</p>",
+                "text": "<p>Sign up for updates on new products, exclusive offers and expert wellness tips</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -110,7 +110,13 @@
               "type": "email-signup",
               "name": "Email Signup",
               "settings": {
-                "width": "fill"
+                "width": "fill",
+                "display_type": "arrow",
+                "integrated_button": true,
+                "border_style": "all",
+                "border_radius": 32,
+                "border_width": 1,
+                "style_class": "button-unstyled"
               }
             }
           },
@@ -123,14 +129,14 @@
         "menu_footer": {
           "type": "menu",
           "settings": {
-            "menu": "footer",
-            "heading": "",
+            "menu": "shop-menu",
+            "heading": "Shop",
             "menu_spacing": 12,
             "show_as_accordion": false,
             "accordion_icon": "plus",
             "accordion_dividers": false,
             "inherit_color_scheme": true,
-            "heading_preset": "paragraph",
+            "heading_preset": "h4",
             "link_preset": "paragraph",
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -141,15 +147,28 @@
         "menu_main": {
           "type": "menu",
           "settings": {
-            "menu": "main-menu",
-            "heading": "",
+            "menu": "learn-menu",
+            "heading": "Learn",
             "menu_spacing": 12,
             "show_as_accordion": false,
             "accordion_icon": "plus",
             "accordion_dividers": false,
             "inherit_color_scheme": true,
-            "heading_preset": "paragraph",
+            "heading_preset": "h4",
             "link_preset": "paragraph",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          }
+        },
+        "footer_logo": {
+          "type": "logo",
+          "settings": {
+            "inverse": false,
+            "unit": "percent",
+            "percent_width": 100,
+            "custom_mobile_size": false,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -160,23 +179,24 @@
       "block_order": [
         "group_wErUQf",
         "menu_footer",
-        "menu_main"
+        "menu_main",
+        "footer_logo"
       ],
       "name": "t:names.footer",
       "settings": {
-        "section_width": "page-width",
-        "gap": 40,
+        "section_width": "full-width",
+        "gap": 48,
         "color_scheme": "scheme-5",
-        "padding-block-start": 36,
-        "padding-block-end": 36
+        "padding-block-start": 56,
+        "padding-block-end": 56
       }
     },
     "utilities": {
       "type": "footer-utilities",
       "settings": {
-        "section_width": "page-width",
+        "section_width": "full-width",
         "gap": 24,
-        "divider_thickness": 1,
+        "divider_thickness": 0,
         "color_scheme": "scheme-5",
         "padding-block-start": 12,
         "padding-block-end": 16
@@ -185,7 +205,7 @@
         "copyright": {
           "type": "footer-copyright",
           "settings": {
-            "show_powered_by": true,
+            "show_powered_by": false,
             "font_size": "0.75rem",
             "case": "none"
           }
@@ -202,16 +222,15 @@
           "settings": {
             "facebook_url": "https://www.facebook.com",
             "instagram_url": "https://www.instagram.com",
-            "tiktok_url": "https://www.tiktok.com",
-            "twitter_url": "https://www.twitter.com",
-            "youtube_url": "https://www.youtube.com"
+            "tiktok_url": "",
+            "twitter_url": "",
+            "youtube_url": ""
           }
         }
       },
       "block_order": [
-        "copyright",
-        "policy_list",
-        "social_icons"
+        "social_icons",
+        "policy_list"
       ]
     }
   },

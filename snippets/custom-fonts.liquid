@@ -1,0 +1,30 @@
+{% comment %}
+  Custom font loading for Simplon Norm (heading + body role).
+  DEPENDENCY: Font files must be uploaded to the theme assets/ directory:
+    - simplon-norm-light.woff2 (weight 300, used for headings)
+    - simplon-norm-medium.woff2 (weight 500, used for body/announcement text)
+  Until these files are provided, text will fall back to the system sans-serif stack.
+{% endcomment %}
+
+<style>
+  @font-face {
+    font-family: 'Simplon Norm';
+    src: url('{{ "simplon-norm-light.woff2" | asset_url }}') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Simplon Norm';
+    src: url('{{ "simplon-norm-medium.woff2" | asset_url }}') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --font-heading--family: 'Simplon Norm', sans-serif;
+    --font-body--family: 'Simplon Norm', sans-serif;
+  }
+</style>
