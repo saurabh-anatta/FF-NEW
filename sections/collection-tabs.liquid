@@ -1,0 +1,706 @@
+{% liquid
+  assign collections_list = ''
+  assign collections_count = 0
+
+  if section.settings.collection_1 != blank
+    assign collections_count = collections_count | plus: 1
+  endif
+  if section.settings.collection_2 != blank
+    assign collections_count = collections_count | plus: 1
+  endif
+  if section.settings.collection_3 != blank
+    assign collections_count = collections_count | plus: 1
+  endif
+  if section.settings.collection_4 != blank
+    assign collections_count = collections_count | plus: 1
+  endif
+  if section.settings.collection_5 != blank
+    assign collections_count = collections_count | plus: 1
+  endif
+
+  assign max_products = section.settings.products_per_collection
+%}
+
+<collection-tabs
+  class="
+    section
+    section--{{ section.settings.section_width }}
+    collection-tabs
+    spacing-style
+  "
+  style="
+    {% render 'spacing-style', settings: section.settings %}
+    --columns-desktop: {{ section.settings.columns_desktop }};
+    --grid-gap: {{ section.settings.grid_gap }}px;
+    --heading-color: {{ section.settings.heading_color }};
+  "
+>
+  {%- comment -%} Tab Bar {%- endcomment -%}
+  <div class="collection-tabs__bar color-{{ section.settings.tab_color_scheme }}">
+    <div class="collection-tabs__tabs" role="tablist">
+      {% if section.settings.show_all_tab %}
+        <button
+          ref="tab[]"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          class="collection-tabs__tab is-active"
+          data-target="all"
+          on:click="/handleTabClick"
+        >
+          <span class="collection-tabs__tab-label--desktop">{{ section.settings.all_tab_heading }}</span>
+          <span class="collection-tabs__tab-label--mobile">{{ section.settings.all_tab_mobile_label }}</span>
+        </button>
+      {% endif %}
+
+      {% if section.settings.collection_1 != blank %}
+        <button
+          ref="tab[]"
+          type="button"
+          role="tab"
+          aria-selected="{% if section.settings.show_all_tab == false and collections_count >= 1 %}true{% else %}false{% endif %}"
+          class="collection-tabs__tab{% if section.settings.show_all_tab == false %} is-active{% endif %}"
+          data-target="0"
+          on:click="/handleTabClick"
+        >
+          <span class="collection-tabs__tab-label--desktop">{{ section.settings.collection_1.title | escape }}</span>
+          <span class="collection-tabs__tab-label--mobile">{% if section.settings.collection_1_mobile_label != blank %}{{ section.settings.collection_1_mobile_label | escape }}{% else %}{{ section.settings.collection_1.title | escape }}{% endif %}</span>
+        </button>
+      {% endif %}
+
+      {% if section.settings.collection_2 != blank %}
+        <button
+          ref="tab[]"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="collection-tabs__tab"
+          data-target="1"
+          on:click="/handleTabClick"
+        >
+          <span class="collection-tabs__tab-label--desktop">{{ section.settings.collection_2.title | escape }}</span>
+          <span class="collection-tabs__tab-label--mobile">{% if section.settings.collection_2_mobile_label != blank %}{{ section.settings.collection_2_mobile_label | escape }}{% else %}{{ section.settings.collection_2.title | escape }}{% endif %}</span>
+        </button>
+      {% endif %}
+
+      {% if section.settings.collection_3 != blank %}
+        <button
+          ref="tab[]"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="collection-tabs__tab"
+          data-target="2"
+          on:click="/handleTabClick"
+        >
+          <span class="collection-tabs__tab-label--desktop">{{ section.settings.collection_3.title | escape }}</span>
+          <span class="collection-tabs__tab-label--mobile">{% if section.settings.collection_3_mobile_label != blank %}{{ section.settings.collection_3_mobile_label | escape }}{% else %}{{ section.settings.collection_3.title | escape }}{% endif %}</span>
+        </button>
+      {% endif %}
+
+      {% if section.settings.collection_4 != blank %}
+        <button
+          ref="tab[]"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="collection-tabs__tab"
+          data-target="3"
+          on:click="/handleTabClick"
+        >
+          <span class="collection-tabs__tab-label--desktop">{{ section.settings.collection_4.title | escape }}</span>
+          <span class="collection-tabs__tab-label--mobile">{% if section.settings.collection_4_mobile_label != blank %}{{ section.settings.collection_4_mobile_label | escape }}{% else %}{{ section.settings.collection_4.title | escape }}{% endif %}</span>
+        </button>
+      {% endif %}
+
+      {% if section.settings.collection_5 != blank %}
+        <button
+          ref="tab[]"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="collection-tabs__tab"
+          data-target="4"
+          on:click="/handleTabClick"
+        >
+          <span class="collection-tabs__tab-label--desktop">{{ section.settings.collection_5.title | escape }}</span>
+          <span class="collection-tabs__tab-label--mobile">{% if section.settings.collection_5_mobile_label != blank %}{{ section.settings.collection_5_mobile_label | escape }}{% else %}{{ section.settings.collection_5.title | escape }}{% endif %}</span>
+        </button>
+      {% endif %}
+    </div>
+  </div>
+
+  {%- comment -%} Content Area {%- endcomment -%}
+  <div class="collection-tabs__content color-{{ section.settings.color_scheme }}">
+
+    {% if section.settings.show_all_tab %}
+      <div ref="allHeader" class="collection-tabs__all-header">
+        {% if section.settings.all_tab_heading != blank %}
+          <h2 class="collection-tabs__heading">{{ section.settings.all_tab_heading | escape }}</h2>
+        {% endif %}
+        {% if section.settings.all_tab_description != blank %}
+          <p class="collection-tabs__description">{{ section.settings.all_tab_description | escape }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {%- comment -%} Panel for collection 1 {%- endcomment -%}
+    {% if section.settings.collection_1 != blank %}
+      <div ref="panel[]" class="collection-tabs__panel" data-panel="0">
+        <div class="collection-tabs__panel-header">
+          <h2 class="collection-tabs__heading">{{ section.settings.collection_1.title | escape }}</h2>
+          {% if section.settings.collection_1.description != blank %}
+            <p class="collection-tabs__description">{{ section.settings.collection_1.description | strip_html | escape }}</p>
+          {% endif %}
+        </div>
+        <div class="collection-tabs__grid">
+          {% for product in section.settings.collection_1.products limit: max_products %}
+            <div class="collection-tabs__grid-item">
+              {% # theme-check-disable UniqueStaticBlockId %}
+                {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
+              {% # theme-check-enable UniqueStaticBlockId %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {%- comment -%} Panel for collection 2 {%- endcomment -%}
+    {% if section.settings.collection_2 != blank %}
+      <div ref="panel[]" class="collection-tabs__panel" data-panel="1">
+        <div class="collection-tabs__panel-header">
+          <h2 class="collection-tabs__heading">{{ section.settings.collection_2.title | escape }}</h2>
+          {% if section.settings.collection_2.description != blank %}
+            <p class="collection-tabs__description">{{ section.settings.collection_2.description | strip_html | escape }}</p>
+          {% endif %}
+        </div>
+        <div class="collection-tabs__grid">
+          {% for product in section.settings.collection_2.products limit: max_products %}
+            <div class="collection-tabs__grid-item">
+              {% # theme-check-disable UniqueStaticBlockId %}
+                {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
+              {% # theme-check-enable UniqueStaticBlockId %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {%- comment -%} Panel for collection 3 {%- endcomment -%}
+    {% if section.settings.collection_3 != blank %}
+      <div ref="panel[]" class="collection-tabs__panel" data-panel="2">
+        <div class="collection-tabs__panel-header">
+          <h2 class="collection-tabs__heading">{{ section.settings.collection_3.title | escape }}</h2>
+          {% if section.settings.collection_3.description != blank %}
+            <p class="collection-tabs__description">{{ section.settings.collection_3.description | strip_html | escape }}</p>
+          {% endif %}
+        </div>
+        <div class="collection-tabs__grid">
+          {% for product in section.settings.collection_3.products limit: max_products %}
+            <div class="collection-tabs__grid-item">
+              {% # theme-check-disable UniqueStaticBlockId %}
+                {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
+              {% # theme-check-enable UniqueStaticBlockId %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {%- comment -%} Panel for collection 4 {%- endcomment -%}
+    {% if section.settings.collection_4 != blank %}
+      <div ref="panel[]" class="collection-tabs__panel" data-panel="3">
+        <div class="collection-tabs__panel-header">
+          <h2 class="collection-tabs__heading">{{ section.settings.collection_4.title | escape }}</h2>
+          {% if section.settings.collection_4.description != blank %}
+            <p class="collection-tabs__description">{{ section.settings.collection_4.description | strip_html | escape }}</p>
+          {% endif %}
+        </div>
+        <div class="collection-tabs__grid">
+          {% for product in section.settings.collection_4.products limit: max_products %}
+            <div class="collection-tabs__grid-item">
+              {% # theme-check-disable UniqueStaticBlockId %}
+                {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
+              {% # theme-check-enable UniqueStaticBlockId %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {%- comment -%} Panel for collection 5 {%- endcomment -%}
+    {% if section.settings.collection_5 != blank %}
+      <div ref="panel[]" class="collection-tabs__panel" data-panel="4">
+        <div class="collection-tabs__panel-header">
+          <h2 class="collection-tabs__heading">{{ section.settings.collection_5.title | escape }}</h2>
+          {% if section.settings.collection_5.description != blank %}
+            <p class="collection-tabs__description">{{ section.settings.collection_5.description | strip_html | escape }}</p>
+          {% endif %}
+        </div>
+        <div class="collection-tabs__grid">
+          {% for product in section.settings.collection_5.products limit: max_products %}
+            <div class="collection-tabs__grid-item">
+              {% # theme-check-disable UniqueStaticBlockId %}
+                {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
+              {% # theme-check-enable UniqueStaticBlockId %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</collection-tabs>
+
+<script type="module" src="{{ 'collection-tabs.js' | asset_url }}"></script>
+
+{% stylesheet %}
+  collection-tabs {
+    display: block;
+  }
+
+  .collection-tabs__bar {
+    padding: 24px 64px;
+  }
+
+  .collection-tabs__tabs {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .collection-tabs__tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    padding: 2px 24px 4px 24px;
+    border: 1px solid var(--color-foreground);
+    background: transparent;
+    color: var(--color-foreground);
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &.is-active {
+      background: var(--color-foreground);
+      color: var(--color-background);
+      border-color: var(--color-foreground);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-foreground);
+      outline-offset: 2px;
+    }
+  }
+
+  .collection-tabs__tab-label--mobile {
+    display: none;
+  }
+
+  .collection-tabs__content {
+    padding: 48px 64px 0 64px;
+  }
+
+  .collection-tabs__all-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-block-end: 24px;
+
+    &.is-hidden {
+      display: none;
+    }
+  }
+
+  .collection-tabs__panel {
+    margin-block-end: 24px;
+
+    &.is-hidden {
+      display: none;
+    }
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+
+  .collection-tabs__panel-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-block-end: 24px;
+  }
+
+  .collection-tabs__heading {
+    font-family: var(--font-heading--family);
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: var(--heading-color, #263628);
+    margin: 0;
+  }
+
+  .collection-tabs__description {
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-foreground);
+    margin: 0;
+  }
+
+  .collection-tabs__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--columns-desktop, 4), 1fr);
+    gap: var(--grid-gap, 32px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-tabs__bar {
+      padding: 12px 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .collection-tabs__tabs {
+      gap: 12px;
+      flex-wrap: nowrap;
+    }
+
+    .collection-tabs__tab {
+      font-size: 14px;
+      line-height: 20px;
+      padding: 2px 12px 4px 12px;
+    }
+
+    .collection-tabs__tab-label--desktop {
+      display: none;
+    }
+
+    .collection-tabs__tab-label--mobile {
+      display: inline;
+    }
+
+    .collection-tabs__content {
+      padding: 32px 16px 0 16px;
+    }
+
+    .collection-tabs__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .collection-tabs__heading {
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    .collection-tabs__description {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection tabs",
+  "tag": "section",
+  "class": "collection-tabs-wrapper section-wrapper",
+  "blocks": [
+    { "type": "@theme" },
+    { "type": "@app" }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Tab settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_all_tab",
+      "label": "Show All tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "all_tab_heading",
+      "label": "All tab heading",
+      "default": "All Products"
+    },
+    {
+      "type": "textarea",
+      "id": "all_tab_description",
+      "label": "All tab description",
+      "default": "Performance-focused nutrition essentials, made to help you feel better, move better, and live better."
+    },
+    {
+      "type": "text",
+      "id": "all_tab_mobile_label",
+      "label": "All tab mobile label",
+      "default": "All"
+    },
+    {
+      "type": "header",
+      "content": "Collections"
+    },
+    {
+      "type": "collection",
+      "id": "collection_1",
+      "label": "Collection 1"
+    },
+    {
+      "type": "text",
+      "id": "collection_1_mobile_label",
+      "label": "Collection 1 mobile label"
+    },
+    {
+      "type": "collection",
+      "id": "collection_2",
+      "label": "Collection 2"
+    },
+    {
+      "type": "text",
+      "id": "collection_2_mobile_label",
+      "label": "Collection 2 mobile label"
+    },
+    {
+      "type": "collection",
+      "id": "collection_3",
+      "label": "Collection 3"
+    },
+    {
+      "type": "text",
+      "id": "collection_3_mobile_label",
+      "label": "Collection 3 mobile label"
+    },
+    {
+      "type": "collection",
+      "id": "collection_4",
+      "label": "Collection 4"
+    },
+    {
+      "type": "text",
+      "id": "collection_4_mobile_label",
+      "label": "Collection 4 mobile label"
+    },
+    {
+      "type": "collection",
+      "id": "collection_5",
+      "label": "Collection 5"
+    },
+    {
+      "type": "text",
+      "id": "collection_5_mobile_label",
+      "label": "Collection 5 mobile label"
+    },
+    {
+      "type": "header",
+      "content": "Product grid"
+    },
+    {
+      "type": "number",
+      "id": "products_per_collection",
+      "label": "Products per collection",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Desktop columns",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid gap",
+      "min": 0,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#263628"
+    },
+    {
+      "type": "color_scheme",
+      "id": "tab_color_scheme",
+      "label": "Tab bar color scheme",
+      "default": "scheme-5"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Content color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.section_layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Page width"
+        },
+        {
+          "value": "full-width",
+          "label": "Full width"
+        }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection tabs",
+      "category": "t:categories.collection",
+      "settings": {
+        "show_all_tab": true,
+        "all_tab_heading": "All Products",
+        "all_tab_description": "Performance-focused nutrition essentials, made to help you feel better, move better, and live better.",
+        "all_tab_mobile_label": "All",
+        "products_per_collection": 8,
+        "columns_desktop": 4,
+        "grid_gap": 32,
+        "heading_color": "#263628",
+        "tab_color_scheme": "scheme-5",
+        "color_scheme": "scheme-1",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      },
+      "blocks": {
+        "static-product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product-card-gallery": {
+              "type": "_product-card-gallery",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "product_title": {
+              "type": "product-title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "price": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            }
+          },
+          "block_order": ["product-card-gallery", "product_title", "price"]
+        }
+      },
+      "block_order": []
+    }
+  ]
+}
+{% endschema %}
