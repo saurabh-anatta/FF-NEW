@@ -1,24 +1,7 @@
 {% liquid
-  assign collections_list = ''
-  assign collections_count = 0
-
-  if section.settings.collection_1 != blank
-    assign collections_count = collections_count | plus: 1
-  endif
-  if section.settings.collection_2 != blank
-    assign collections_count = collections_count | plus: 1
-  endif
-  if section.settings.collection_3 != blank
-    assign collections_count = collections_count | plus: 1
-  endif
-  if section.settings.collection_4 != blank
-    assign collections_count = collections_count | plus: 1
-  endif
-  if section.settings.collection_5 != blank
-    assign collections_count = collections_count | plus: 1
-  endif
-
+  assign tab_collections = section.settings.collection_list
   assign max_products = section.settings.products_per_collection
+  assign show_all = section.settings.show_all_tab
 %}
 
 <collection-tabs
@@ -38,7 +21,7 @@
   {%- comment -%} Tab Bar {%- endcomment -%}
   <div class="collection-tabs__bar color-{{ section.settings.tab_color_scheme }}">
     <div class="collection-tabs__tabs" role="tablist">
-      {% if section.settings.show_all_tab %}
+      {% if show_all %}
         <button
           ref="tab[]"
           type="button"
@@ -53,79 +36,20 @@
         </button>
       {% endif %}
 
-      {% if section.settings.collection_1 != blank %}
-        <button
-          ref="tab[]"
-          type="button"
-          role="tab"
-          aria-selected="{% if section.settings.show_all_tab == false and collections_count >= 1 %}true{% else %}false{% endif %}"
-          class="collection-tabs__tab{% if section.settings.show_all_tab == false %} is-active{% endif %}"
-          data-target="0"
-          on:click="/handleTabClick"
-        >
-          <span class="collection-tabs__tab-label--desktop">{{ section.settings.collection_1.title | escape }}</span>
-          <span class="collection-tabs__tab-label--mobile">{% if section.settings.collection_1_mobile_label != blank %}{{ section.settings.collection_1_mobile_label | escape }}{% else %}{{ section.settings.collection_1.title | escape }}{% endif %}</span>
-        </button>
-      {% endif %}
-
-      {% if section.settings.collection_2 != blank %}
-        <button
-          ref="tab[]"
-          type="button"
-          role="tab"
-          aria-selected="false"
-          class="collection-tabs__tab"
-          data-target="1"
-          on:click="/handleTabClick"
-        >
-          <span class="collection-tabs__tab-label--desktop">{{ section.settings.collection_2.title | escape }}</span>
-          <span class="collection-tabs__tab-label--mobile">{% if section.settings.collection_2_mobile_label != blank %}{{ section.settings.collection_2_mobile_label | escape }}{% else %}{{ section.settings.collection_2.title | escape }}{% endif %}</span>
-        </button>
-      {% endif %}
-
-      {% if section.settings.collection_3 != blank %}
-        <button
-          ref="tab[]"
-          type="button"
-          role="tab"
-          aria-selected="false"
-          class="collection-tabs__tab"
-          data-target="2"
-          on:click="/handleTabClick"
-        >
-          <span class="collection-tabs__tab-label--desktop">{{ section.settings.collection_3.title | escape }}</span>
-          <span class="collection-tabs__tab-label--mobile">{% if section.settings.collection_3_mobile_label != blank %}{{ section.settings.collection_3_mobile_label | escape }}{% else %}{{ section.settings.collection_3.title | escape }}{% endif %}</span>
-        </button>
-      {% endif %}
-
-      {% if section.settings.collection_4 != blank %}
-        <button
-          ref="tab[]"
-          type="button"
-          role="tab"
-          aria-selected="false"
-          class="collection-tabs__tab"
-          data-target="3"
-          on:click="/handleTabClick"
-        >
-          <span class="collection-tabs__tab-label--desktop">{{ section.settings.collection_4.title | escape }}</span>
-          <span class="collection-tabs__tab-label--mobile">{% if section.settings.collection_4_mobile_label != blank %}{{ section.settings.collection_4_mobile_label | escape }}{% else %}{{ section.settings.collection_4.title | escape }}{% endif %}</span>
-        </button>
-      {% endif %}
-
-      {% if section.settings.collection_5 != blank %}
-        <button
-          ref="tab[]"
-          type="button"
-          role="tab"
-          aria-selected="false"
-          class="collection-tabs__tab"
-          data-target="4"
-          on:click="/handleTabClick"
-        >
-          <span class="collection-tabs__tab-label--desktop">{{ section.settings.collection_5.title | escape }}</span>
-          <span class="collection-tabs__tab-label--mobile">{% if section.settings.collection_5_mobile_label != blank %}{{ section.settings.collection_5_mobile_label | escape }}{% else %}{{ section.settings.collection_5.title | escape }}{% endif %}</span>
-        </button>
+      {% if tab_collections != blank %}
+        {% for tab_collection in tab_collections %}
+          <button
+            ref="tab[]"
+            type="button"
+            role="tab"
+            aria-selected="{% if show_all == false and forloop.first %}true{% else %}false{% endif %}"
+            class="collection-tabs__tab{% if show_all == false and forloop.first %} is-active{% endif %}"
+            data-target="{{ forloop.index0 }}"
+            on:click="/handleTabClick"
+          >
+            {{ tab_collection.title | escape }}
+          </button>
+        {% endfor %}
       {% endif %}
     </div>
   </div>
@@ -133,7 +57,7 @@
   {%- comment -%} Content Area {%- endcomment -%}
   <div class="collection-tabs__content color-{{ section.settings.color_scheme }}">
 
-    {% if section.settings.show_all_tab %}
+    {% if show_all %}
       <div ref="allHeader" class="collection-tabs__all-header">
         {% if section.settings.all_tab_heading != blank %}
           <h2 class="collection-tabs__heading">{{ section.settings.all_tab_heading | escape }}</h2>
@@ -144,109 +68,26 @@
       </div>
     {% endif %}
 
-    {%- comment -%} Panel for collection 1 {%- endcomment -%}
-    {% if section.settings.collection_1 != blank %}
-      <div ref="panel[]" class="collection-tabs__panel" data-panel="0">
-        <div class="collection-tabs__panel-header">
-          <h2 class="collection-tabs__heading">{{ section.settings.collection_1.title | escape }}</h2>
-          {% if section.settings.collection_1.description != blank %}
-            <p class="collection-tabs__description">{{ section.settings.collection_1.description | strip_html | escape }}</p>
-          {% endif %}
+    {% if tab_collections != blank %}
+      {% for tab_collection in tab_collections %}
+        <div ref="panel[]" class="collection-tabs__panel" data-panel="{{ forloop.index0 }}">
+          <div class="collection-tabs__panel-header">
+            <h2 class="collection-tabs__heading">{{ tab_collection.title | escape }}</h2>
+            {% if tab_collection.description != blank %}
+              <p class="collection-tabs__description">{{ tab_collection.description | strip_html | escape }}</p>
+            {% endif %}
+          </div>
+          <div class="collection-tabs__grid">
+            {% for product in tab_collection.products limit: max_products %}
+              <div class="collection-tabs__grid-item">
+                {% # theme-check-disable UniqueStaticBlockId %}
+                  {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
+                {% # theme-check-enable UniqueStaticBlockId %}
+              </div>
+            {% endfor %}
+          </div>
         </div>
-        <div class="collection-tabs__grid">
-          {% for product in section.settings.collection_1.products limit: max_products %}
-            <div class="collection-tabs__grid-item">
-              {% # theme-check-disable UniqueStaticBlockId %}
-                {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
-              {% # theme-check-enable UniqueStaticBlockId %}
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
-
-    {%- comment -%} Panel for collection 2 {%- endcomment -%}
-    {% if section.settings.collection_2 != blank %}
-      <div ref="panel[]" class="collection-tabs__panel" data-panel="1">
-        <div class="collection-tabs__panel-header">
-          <h2 class="collection-tabs__heading">{{ section.settings.collection_2.title | escape }}</h2>
-          {% if section.settings.collection_2.description != blank %}
-            <p class="collection-tabs__description">{{ section.settings.collection_2.description | strip_html | escape }}</p>
-          {% endif %}
-        </div>
-        <div class="collection-tabs__grid">
-          {% for product in section.settings.collection_2.products limit: max_products %}
-            <div class="collection-tabs__grid-item">
-              {% # theme-check-disable UniqueStaticBlockId %}
-                {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
-              {% # theme-check-enable UniqueStaticBlockId %}
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
-
-    {%- comment -%} Panel for collection 3 {%- endcomment -%}
-    {% if section.settings.collection_3 != blank %}
-      <div ref="panel[]" class="collection-tabs__panel" data-panel="2">
-        <div class="collection-tabs__panel-header">
-          <h2 class="collection-tabs__heading">{{ section.settings.collection_3.title | escape }}</h2>
-          {% if section.settings.collection_3.description != blank %}
-            <p class="collection-tabs__description">{{ section.settings.collection_3.description | strip_html | escape }}</p>
-          {% endif %}
-        </div>
-        <div class="collection-tabs__grid">
-          {% for product in section.settings.collection_3.products limit: max_products %}
-            <div class="collection-tabs__grid-item">
-              {% # theme-check-disable UniqueStaticBlockId %}
-                {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
-              {% # theme-check-enable UniqueStaticBlockId %}
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
-
-    {%- comment -%} Panel for collection 4 {%- endcomment -%}
-    {% if section.settings.collection_4 != blank %}
-      <div ref="panel[]" class="collection-tabs__panel" data-panel="3">
-        <div class="collection-tabs__panel-header">
-          <h2 class="collection-tabs__heading">{{ section.settings.collection_4.title | escape }}</h2>
-          {% if section.settings.collection_4.description != blank %}
-            <p class="collection-tabs__description">{{ section.settings.collection_4.description | strip_html | escape }}</p>
-          {% endif %}
-        </div>
-        <div class="collection-tabs__grid">
-          {% for product in section.settings.collection_4.products limit: max_products %}
-            <div class="collection-tabs__grid-item">
-              {% # theme-check-disable UniqueStaticBlockId %}
-                {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
-              {% # theme-check-enable UniqueStaticBlockId %}
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
-
-    {%- comment -%} Panel for collection 5 {%- endcomment -%}
-    {% if section.settings.collection_5 != blank %}
-      <div ref="panel[]" class="collection-tabs__panel" data-panel="4">
-        <div class="collection-tabs__panel-header">
-          <h2 class="collection-tabs__heading">{{ section.settings.collection_5.title | escape }}</h2>
-          {% if section.settings.collection_5.description != blank %}
-            <p class="collection-tabs__description">{{ section.settings.collection_5.description | strip_html | escape }}</p>
-          {% endif %}
-        </div>
-        <div class="collection-tabs__grid">
-          {% for product in section.settings.collection_5.products limit: max_products %}
-            <div class="collection-tabs__grid-item">
-              {% # theme-check-disable UniqueStaticBlockId %}
-                {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
-              {% # theme-check-enable UniqueStaticBlockId %}
-            </div>
-          {% endfor %}
-        </div>
-      </div>
+      {% endfor %}
     {% endif %}
 
   </div>
@@ -455,54 +296,9 @@
       "content": "Collections"
     },
     {
-      "type": "collection",
-      "id": "collection_1",
-      "label": "Collection 1"
-    },
-    {
-      "type": "text",
-      "id": "collection_1_mobile_label",
-      "label": "Collection 1 mobile label"
-    },
-    {
-      "type": "collection",
-      "id": "collection_2",
-      "label": "Collection 2"
-    },
-    {
-      "type": "text",
-      "id": "collection_2_mobile_label",
-      "label": "Collection 2 mobile label"
-    },
-    {
-      "type": "collection",
-      "id": "collection_3",
-      "label": "Collection 3"
-    },
-    {
-      "type": "text",
-      "id": "collection_3_mobile_label",
-      "label": "Collection 3 mobile label"
-    },
-    {
-      "type": "collection",
-      "id": "collection_4",
-      "label": "Collection 4"
-    },
-    {
-      "type": "text",
-      "id": "collection_4_mobile_label",
-      "label": "Collection 4 mobile label"
-    },
-    {
-      "type": "collection",
-      "id": "collection_5",
-      "label": "Collection 5"
-    },
-    {
-      "type": "text",
-      "id": "collection_5_mobile_label",
-      "label": "Collection 5 mobile label"
+      "type": "collection_list",
+      "id": "collection_list",
+      "label": "Collections"
     },
     {
       "type": "header",
